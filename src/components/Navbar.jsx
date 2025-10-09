@@ -51,7 +51,7 @@ export default function Navbar() {
           />
           <div>
             <div className="font-extrabold text-2xl text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.95)]">
-              eCyberSec Club
+              ESC
             </div>
             <div className="text-sm text-gray-300 italic tracking-wide">
               ENIAD — Cybersecurity Society

@@ -38,7 +38,7 @@ export default function Members() {
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-center text-cyberBlack">
               Members — Bureau
             </h2>
-            <p className="text-md md:text-lg text-gray-700 mb-6 text-center">
+            <p className="text-md md:text-lg text-white mb-6 text-center">
               Click a member's avatar to reveal role and LinkedIn.
             </p>
 

@@ -15,7 +15,7 @@ import webImage from "/public/webimage.jpg";
 import clubPic2 from "/public/clubicon.png";
 import scholarityImage from "/public/scholarityPortal.png";
 import eniadlogoImage from "/public/eniadlogoImage.png";
-import umplogoImage from "/public/umpLogoImage.png";
+import umpLogoImage from "/public/umpLogoImage.png";
 
 
 
@@ -30,7 +30,7 @@ const resources = [
   { id: 1, name: "ENIAD Constitution", href: ENIAD_ConstitutionPDF, img: docImage, type: "doc" },
   { id: 2, name: "ENIAD Scholarity Portal", href: "https://scolarite-eniadb.ump.ma/", img: scholarityImage, type: "web" },
   { id: 3, name: "ENIAD Website", href: "https://eniad.ump.ma/", img: eniadlogoImage, type: "web" },
-  { id: 4, name: "Mohamed First University", href: "https://www.ump.ma/", img: umplogoImage, type: "web" },
+  { id: 4, name: "Mohamed First University", href: "https://www.ump.ma/", img: umpLogoImage, type: "web" },
 ];
 
 export default function AnnualPlan({ theme }) {

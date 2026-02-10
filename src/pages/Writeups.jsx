@@ -4,12 +4,9 @@ import clubPic2 from "/public/clubicon.png";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FALLBACK_IMAGE = "/default-writeup.jpg"; // no /public prefix
+const FALLBACK_IMAGE = "/public/default-writeup.jpg";
 
-export default function WriteUps({ theme: incomingTheme }) {
-  // ✅ Force default light mode if undefined/null
-  const [theme, setTheme] = useState(incomingTheme || "light");
-
+export default function WriteUps({ theme = "light" }) {
   const [allPosts, setAllPosts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,7 +106,9 @@ export default function WriteUps({ theme: incomingTheme }) {
                     src={imageSrc}
                     alt={p.title}
                     className="w-full h-48 object-cover"
-                    onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_IMAGE;
+                    }}
                   />
 
                   <div className="p-6">

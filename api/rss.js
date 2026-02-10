@@ -1,5 +1,9 @@
 import Parser from "rss-parser";
-const parser = new Parser();
+const parser = new Parser({
+  customFields: {
+    item: ["media:content", "media:thumbnail", "enclosure"],
+  },
+});
 
 const FEEDS = [
   "https://feeds.feedburner.com/TheHackersNews",
@@ -15,13 +19,27 @@ export default async function handler(req, res) {
       try {
         const feed = await parser.parseURL(url);
 
-        const items = feed.items.map((item) => ({
-          title: item.title,
-          link: item.link,
-          date: item.pubDate || item.isoDate || "",
-          description: item.contentSnippet || "",
-          source: feed.title,
-        }));
+        const items = feed.items.map((item) => {
+          let image = null;
+
+          // Try multiple RSS image fields safely
+          if (item.enclosure?.url) {
+            image = item.enclosure.url;
+          } else if (item["media:content"]?.url) {
+            image = item["media:content"].url;
+          } else if (item["media:thumbnail"]?.url) {
+            image = item["media:thumbnail"].url;
+          }
+
+          return {
+            title: item.title,
+            link: item.link,
+            date: item.pubDate || item.isoDate || "",
+            description: item.contentSnippet || "",
+            source: feed.title,
+            image, // <-- added
+          };
+        });
 
         allItems.push(...items);
       } catch (e) {

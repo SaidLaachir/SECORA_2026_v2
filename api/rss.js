@@ -11,8 +11,8 @@ const FEEDS = [
   "https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml",
 ];
 
-// 👉 Default image (replace with your own if needed)
-const DEFAULT_IMAGE = "/public/cybernews.jpg";
+// ✅ Correct fallback image path (no /public prefix)
+const DEFAULT_IMAGE = "/cybernews.jpg";
 
 export default async function handler(req, res) {
   try {
@@ -33,13 +33,14 @@ export default async function handler(req, res) {
             image = item["media:thumbnail"].url;
           }
 
+          // ✅ guaranteed fallback
           return {
             title: item.title,
             link: item.link,
             date: item.pubDate || item.isoDate || "",
             description: item.contentSnippet || "",
             source: feed.title,
-            image: image || DEFAULT_IMAGE, // ✅ fallback added
+            image: image || DEFAULT_IMAGE,
           };
         });
 

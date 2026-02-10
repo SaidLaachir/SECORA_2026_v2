@@ -14,7 +14,10 @@ import Preloader from "./components/Preloader";
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(true);
-  const [theme, setTheme] = useState("light"); // light | dark
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "dark"
+  );
+
 
   // Load saved theme
   useEffect(() => {

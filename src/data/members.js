@@ -44,10 +44,10 @@ const members = [
   {
     id: 4,
     name: "Mohamed Amine AIT BAOUI",
-    role: "HR Manager",
+    role: "Formation Manager",
     image: AIT_BAOUI_Mohamed_amine,
     linkedin: "https://www.linkedin.com/in/oussama-hajjoubi-089a66214/",
-    bio: "Oussama is the key for good team work and cooperation between our people."
+    bio: "Mohamed Amine is the formation manager of our club, he is responsible for managing and coordinating all the training activities of the club and making sure that all the members are well trained and ready for all the activities and events of the club."
   },
   {
     id: 5,
@@ -67,11 +67,11 @@ const members = [
   },
   {
     id: 7,
-    name: "Ihsane",
-    role: "Treasurer",
+    name: "Ihsane FATHI",
+    role: "Interior commuinication manager",
     image: ihsane,
     linkedin: "https://linkedin.com/in/example3",
-    bio: "The Money keeper of the club. without her we're broke hahaha."
+    bio: "Ihsane is the interior communication manager of our club, she is responsible for managing and coordinating all the communication activities between the members of the club and making sure that all the members are well informed about all the activities and events of the club."
   },
   {
     id: 8,

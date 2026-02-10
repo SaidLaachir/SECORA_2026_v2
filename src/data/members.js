@@ -1,18 +1,17 @@
-// import images properly
-import abdo from "/public/clubMembers/abdo.jpeg";
-import said from "/public/clubMembers/said.png";
-import fati from "/public/clubMembers/fati.png";
-const newunknown =  "/public/newunkown.png";
-import ihsane from "/public/clubMembers/ihsane.jpeg";
-import safouane from "/public/clubMembers/safouane.jpeg";
-import AIT_BAOUI_Mohamed_amine from "/public/clubMembers/AIT_BAOUI_Mohamed_amine.jpeg";
-import mohcineDarmoune from "/public/clubMembers/mohcineDarmoune.jpeg";
-import Hossam from "/public/clubMembers/Hossam.jpeg";
-import aymen_saleh_ayt_brahim from "/public/clubMembers/aymen saleh ayt brahim.jpeg";
-import ilhamelhajli from "/public/clubMembers/ilhamelhajli.jpeg";
-import yahyaMohib from "/public/clubMembers/yahyaMohib.jpeg";
-import chaimae from "/public/clubMembers/chaimae.jpeg";
-
+// image paths (served from /public, no imports)
+const abdo = "/clubMembers/abdo.jpeg";
+const said = "/clubMembers/said.png";
+const fati = "/clubMembers/fati.png";
+const newunknown = "/newunknown.png";
+const ihsane = "/clubMembers/ihsane.jpeg";
+const safouane = "/clubMembers/safouane.jpeg";
+const AIT_BAOUI_Mohamed_amine = "/clubMembers/AIT_BAOUI_Mohamed_amine.jpeg";
+const mohcineDarmoune = "/clubMembers/mohcineDarmoune.jpeg";
+const Hossam = "/clubMembers/Hossam.jpeg";
+const aymen_saleh_ayt_brahim = "/clubMembers/aymen saleh ayt brahim.jpeg";
+const ilhamelhajli = "/clubMembers/ilhamelhajli.jpeg";
+const yahyaMohib = "/clubMembers/yahyaMohib.jpeg";
+const chaimae = "/clubMembers/chaimae.jpeg";
 
 // sample members data -- replace pictures/links with real ones
 const members = [
@@ -100,7 +99,7 @@ const members = [
     id: 11,
     name: "Mehdi",
     role: "CTF manager",
-    image: unknown,
+    image: newunknown,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
     bio: "Mehdi is the CTF manager of our club, he is responsible for organizing and managing all the CTF events and activities of the club."
   },
@@ -144,8 +143,6 @@ const members = [
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
     bio: "Social Media Manager."
   }
-
-  
 ];
 
 export default members;

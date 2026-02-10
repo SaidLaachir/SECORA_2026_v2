@@ -11,7 +11,6 @@ const FEEDS = [
   "https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml",
 ];
 
-// ✅ Correct fallback image path (no /public prefix)
 const DEFAULT_IMAGE = "/cybernews.jpg";
 
 export default async function handler(req, res) {

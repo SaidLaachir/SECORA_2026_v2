@@ -6,12 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Gallery images
-import pic1 from "../assets/clubpic.jpg";
-import pic2 from "../assets/pic2.jpg";
-import pic3 from "../assets/pic3.jpg";
-import pic4 from "../assets/pic4.jpg";
-import pic5 from "../assets/pic5.jpeg";
-import clubPic2 from "../assets/clubicondark.png";
+import pic1 from "/public/clubMembers/ourteam.jpeg";
+import pic2 from "/public/pic2.jpg";
+import pic3 from "/public/pic3.jpg";
+import pic4 from "/public/pic4.jpg";
+import pic5 from "/public/pic5.jpeg";
+import clubPic2 from "/public/clubicon.png";
+import pic6 from "/public/clubMembers/pic6.jpg";
+import pic7 from "/public/clubMembers/pic7.jpg";
 
 const activities = [
   { id: 1, title: "Hacking Workshop 2025", date: "2025-10-10", venue: "ENIAD Lab A", images: [pic1, pic2] },
@@ -19,31 +21,24 @@ const activities = [
   { id: 3, title: "Cybersecurity Hackathon", date: "2025-11-15", venue: "Lab B", images: [pic4, pic5] },
 ];
 
-const galleryImages = [pic1, pic2, pic3, pic4, pic5];
+const galleryImages = [pic1, pic2, pic3, pic4, pic5, pic6, pic7];
 
-export default function Activities() {
+export default function Activities({ theme }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
 
-  // Notification logic: set a timestamp for activities if not already present
-  useEffect(() => {
-    const notifications = JSON.parse(localStorage.getItem("notifications") || "{}");
-    if (!notifications.activities) {
-      notifications.activities = new Date().toISOString();
-      localStorage.setItem("notifications", JSON.stringify(notifications));
-    }
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   const handleDetails = (activityId) => {
     navigate(`/activity/${activityId}`);
+  };
+
+  // Card animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
   };
 
   return (
@@ -56,13 +51,12 @@ export default function Activities() {
             src={clubPic2}
             alt="Club Icon"
             className="w-16 h-16 object-cover shadow-md drop-shadow-[0_0_10px_rgba(0,0,0,0.7)]"
-            style={{ backgroundColor: "transparent" }}
           />
           <div>
-            <h1 className="text-3xl font-bold text-cyberBlack">
+            <h1 className={`text-3xl font-bold ${theme === "dark" ? "text-white" : "text-black"}`}>
               eCyberSec Club — ENIAD
             </h1>
-            <p className="text-base text-gray-700">
+            <p className={`text-base ${theme === "dark" ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills, ethically and collaboratively.
             </p>
           </div>
@@ -70,28 +64,56 @@ export default function Activities() {
 
         {/* Activities Header */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-2">Activities</h2>
-          <p className="text-md md:text-lg text-gray-700">
+          <h2 className={`text-3xl md:text-4xl font-extrabold mb-2 ${theme === "dark" ? "text-white" : "text-black"}`}>
+            Activities & Events
+          </h2>
+          <p className={`text-md md:text-lg ${theme === "dark" ? "text-gray-300" : "text-black"}`}>
             Upcoming events where the club hosts or participates.
           </p>
         </div>
 
         {/* Activity Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {activities.map((a) => (
-            <ActivityCard
-              key={a.id}
-              title={a.title}
-              date={a.date}
-              venue={a.venue}
-              onDetailsClick={() => handleDetails(a.id)}
-            />
-          ))}
+          <AnimatePresence mode="wait">
+            {activities.map((a) => (
+              <motion.div
+                key={a.id}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+                className={`rounded-lg shadow-lg overflow-hidden border transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/40
+                  ${theme === "dark"
+                    ? "bg-[#1a0033] border-[#5e17eb]/40"
+                    : "bg-white border-gray-200"
+                  }
+                `}
+              >
+                <div className={`px-4 py-2 flex justify-between items-center
+                  bg-cyan-700 text-white
+                  ${theme === "dark" ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6]" : ""}`}>
+                  <span className="font-bold text-lg">{a.title}</span>
+                  <span className="italic text-sm">{a.date}</span>
+                </div>
+                <div className="p-6">
+                  <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl font-semibold mb-2`}>{a.venue}</h3>
+                  <button
+                    onClick={() => handleDetails(a.id)}
+                    className={`px-4 py-2 text-sm rounded border border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white transition
+                      ${theme === "dark" ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white" : ""}`}
+                  >
+                    See Details
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
         {/* Google Form Subscription */}
         <div className="mt-12">
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-4">
+          <h3 className={`text-2xl md:text-3xl font-bold text-center mb-4 ${theme === "dark" ? "text-white" : "text-black"}`}>
             Subscribe for New Club Members (2025-2026)
           </h3>
           <div className="flex justify-center">
@@ -102,20 +124,20 @@ export default function Activities() {
               frameBorder="0"
               marginHeight="0"
               marginWidth="0"
-              className="w-full max-w-2xl rounded-lg shadow-lg"
+              className={`w-full max-w-2xl rounded-lg shadow-lg transition-all duration-300
+                ${theme === "dark" ? "bg-[#1a0033]" : "bg-white"}`}
               title="Club Subscription Form"
-            >
-              Loading…
-            </iframe>
+            />
           </div>
         </div>
 
         {/* Gallery */}
         <div className="mt-12 relative w-full max-w-3xl mx-auto group">
-          <h3 className="text-3xl md:text-4xl font-extrabold text-center mb-6">
+          <h3 className={`text-3xl md:text-4xl font-extrabold text-center mb-6 ${theme === "dark" ? "text-white" : "text-black"}`}>
             Memories & Past Activities
           </h3>
-          <div className="overflow-hidden rounded-lg shadow-lg relative h-80 bg-white">
+          <div className={`overflow-hidden rounded-lg shadow-lg relative h-80 transition-all duration-300
+            ${theme === "dark" ? "bg-[#1a0033]" : "bg-white"}`}>
             <AnimatePresence mode="wait">
               <motion.img
                 key={galleryImages[currentIndex]}
@@ -147,12 +169,29 @@ export default function Activities() {
 
         {/* Socials */}
         <div className="mt-12 text-center space-y-2">
-          <h3 className="font-bold text-2xl md:text-3xl mb-3">Join our socials</h3>
+          <h3 className={`font-bold text-2xl md:text-3xl mb-3 ${theme === "dark" ? "text-white" : "text-black"}`}>Join our socials</h3>
           <div className="flex justify-center gap-4 flex-wrap">
-            <a href="https://www.instagram.com/e_cybersec_club/" target="_blank" rel="noreferrer" className="px-4 py-2 rounded text-black border border-gray-400 transition-all duration-300 transform hover:scale-105 hover:bg-[#E4405F] hover:text-white">Instagram</a>
-            <a href="https://www.linkedin.com/company/akira-club/posts/?feedView=all" target="_blank" rel="noreferrer" className="px-4 py-2 rounded text-black border border-gray-400 transition-all duration-300 transform hover:scale-105 hover:bg-[#0077B5] hover:text-white">LinkedIn</a>
-            <a href="#" className="px-4 py-2 rounded text-black border border-gray-400 transition-all duration-300 transform hover:scale-105 hover:bg-[#5865F2] hover:text-white">Discord</a>
-            <a href="https://chat.whatsapp.com/DBc4WdUPcVnI2z0iHGRZPC?mode=ems_wa_c" className="px-4 py-2 rounded text-black border border-gray-400 transition-all duration-300 transform hover:scale-105 hover:bg-[#25D366] hover:text-white">WhatsApp</a>
+            {[
+              { href: "https://www.instagram.com/e_cybersec_club/", name: "Instagram", color: "#E4405F" },
+              { href: "https://www.linkedin.com/company/akira-club/posts/?feedView=all", name: "LinkedIn", color: "#0077B5" },
+              { href: "https://discord.gg/rPVBFPvq", name: "Discord", color: "#5865F2" },
+              { href: "https://chat.whatsapp.com/DBc4WdUPcVnI2z0iHGRZPC?mode=ems_wa_c", name: "WhatsApp", color: "#25D366" },
+            ].map((social, idx) => (
+              <a
+                key={idx}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`px-4 py-2 rounded border transition-all duration-300 transform hover:scale-105 hover:text-white`}
+                style={{
+                  borderColor: theme === "dark" ? "#8b5cf6" : "#ccc",
+                  backgroundColor: theme === "dark" ? "#1a0033" : "transparent",
+                  color: theme === "dark" ? "#c7b8ff" : "black",
+                }}
+              >
+                {social.name}
+              </a>
+            ))}
           </div>
         </div>
       </section>

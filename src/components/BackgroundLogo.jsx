@@ -1,6 +1,5 @@
 import React from "react";
-import clubIcon from "../assets/clubicondark.png";
-
+import clubIcon from "/public/clubicon.png";
 export default function BackgroundLogo() {
   return (
     <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">

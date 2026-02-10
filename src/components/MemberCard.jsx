@@ -1,6 +1,9 @@
 import React from "react";
 
-export default function MemberCard({ member, isOpen, onClick }) {
+export default function MemberCard({ member, isOpen, onClick, theme }) {
+
+  const isDark = theme === "dark";
+
   return (
     <div className="flex flex-col items-center text-center max-w-xs">
       <button
@@ -17,8 +20,13 @@ export default function MemberCard({ member, isOpen, onClick }) {
       </button>
 
       <div className="mt-3">
-        <div className="font-bold text-lg text-cyberBlack">{member.name}</div>
-        <div className="text-md font-medium text-cyberTeal">{member.role}</div>
+        <div className={`${isDark ? "text-white" : "text-black"} font-bold text-lg`}>
+          {member.name}
+        </div>
+
+        <div className="text-md font-medium text-cyberTeal">
+          {member.role}
+        </div>
       </div>
 
       <div
@@ -26,10 +34,20 @@ export default function MemberCard({ member, isOpen, onClick }) {
           isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
-        <div className="bg-white p-3 rounded shadow-sm border">
-          <p className="text-sm">{member.bio}</p>
+        <div
+          className={`p-3 rounded shadow-sm border
+          ${isDark
+            ? "bg-[#12001f] border-[#5e17eb]/40"
+            : "bg-white border-gray-200"}`}
+        >
+          <p className={`${isDark ? "text-gray-300" : "text-black"} text-sm`}>
+            {member.bio}
+          </p>
+
           <a
-            className="text-sm block mt-2 underline text-cyberTeal"
+            className={`text-sm block mt-2 underline ${
+              isDark ? "text-[#c7b8ff]" : "text-cyberTeal"
+            }`}
             href={member.linkedin}
             target="_blank"
             rel="noreferrer"

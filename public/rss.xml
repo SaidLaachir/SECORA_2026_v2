@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>eCyberSec Club — Write-ups</title>
+    <link>https://yourdomain.com/writeups</link>
+    <description>Cybersecurity research, vulnerability write-ups, and technical notes from eCyberSec ENIAD.</description>
+    <language>en-us</language>
+
+    <item>
+      <title>Latest Zero-Day Vulnerability in Chrome</title>
+      <link>https://yourdomain.com/writeups/chrome-zero-day</link>
+      <pubDate>Fri, 20 Sep 2025 12:00:00 GMT</pubDate>
+      <description>
+        Google patched a critical zero-day vulnerability actively exploited in the wild.
+      </description>
+    </item>
+
+    <item>
+      <title>Deep Dive: Ransomware-as-a-Service (RaaS)</title>
+      <link>https://yourdomain.com/writeups/raas</link>
+      <pubDate>Thu, 12 Sep 2025 12:00:00 GMT</pubDate>
+      <description>
+        Exploration of the ransomware provider ecosystem and operational models.
+      </description>
+    </item>
+
+    <item>
+      <title>OWASP Top 10: 2025 Updates</title>
+      <link>https://yourdomain.com/writeups/owasp-2025</link>
+      <pubDate>Sun, 01 Sep 2025 12:00:00 GMT</pubDate>
+      <description>
+        Overview of the newest risks and mitigations in the OWASP Top 10.
+      </description>
+    </item>
+
+  </channel>
+</rss>

@@ -1,0 +1,101 @@
+import React from "react";
+import { useParams, useLocation, Link } from "react-router-dom";
+import PageWrapper from "../components/PageWrapper";
+
+export default function WriteUpDetail({ theme }) {
+  const { id } = useParams();
+  const location = useLocation();
+
+  // The selected post is passed via React Router state
+  const post = location.state?.post;
+
+  if (!post) {
+    return (
+      <PageWrapper>
+        <section className="pt-28 pb-16 text-center">
+          <h2 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
+            Write-up not found
+          </h2>
+          <Link
+            to="/writeups"
+            className={`
+              mt-4 inline-block px-6 py-2 rounded border transition 
+              ${theme === "dark"
+                ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
+                : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
+              }
+            `}
+          >
+            Back to Write-ups
+          </Link>
+        </section>
+      </PageWrapper>
+    );
+  }
+
+  return (
+    <PageWrapper>
+      <section className="pt-28 pb-16 max-w-4xl mx-auto space-y-6">
+
+        {/* Title */}
+        <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl md:text-4xl font-extrabold`}>
+          {post.title}
+        </h1>
+
+        {/* Date */}
+        <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} text-sm`}>
+          {post.date}
+        </p>
+
+        {/* Image */}
+        {post.image && (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full rounded-lg shadow-lg mt-4"
+          />
+        )}
+
+        {/* Description */}
+        <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mt-4 whitespace-pre-line`}>
+          {post.description}
+        </p>
+
+        {/* Read Full Source */}
+        {post.link && (
+          <a
+            href={post.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`
+              inline-block mt-6 px-4 py-2 text-sm rounded border transition
+              ${theme === "dark"
+                ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
+                : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
+              }
+            `}
+          >
+            Read Full Source
+          </a>
+        )}
+
+        {/* Back button */}
+        <div className="text-center mt-4">
+          <Link
+            to="/writeups"
+            className={`
+              inline-block px-6 py-2 rounded border transition
+              ${theme === "dark"
+                ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
+                : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
+              }
+            `}
+          >
+            Back to Write-ups
+          </Link>
+        </div>
+
+      </section>
+    </PageWrapper>
+  );
+}

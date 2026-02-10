@@ -1,11 +1,11 @@
 // src/components/PageWrapper.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import clubIcon from "../assets/clubicondark.png";
+import clubIcon from "/public/clubicon.png";
 
 export default function PageWrapper({ children }) {
   return (
-    <div className="relative w-full min-h-screen">
+    <div className="relative w-full min-h-screen bg-transparent transition-colors">
       {/* Fixed Background Logo */}
       <div
         className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
@@ -14,7 +14,7 @@ export default function PageWrapper({ children }) {
           backgroundSize: "300px",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
-          opacity: 0.05, // adjust transparency
+          opacity: 0.05,
         }}
       ></div>
 

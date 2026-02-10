@@ -2,97 +2,110 @@ import React, { useState } from "react";
 import PageWrapper from "../components/PageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 
-//? Documents
 import AnnualPlanPDF from "../assets/documents/Annual Plan.pdf";
 import OpeningPlanPDF from "../assets/documents/Opening Plan.pdf";
 import ClubConstPDF from "../assets/documents/Club Constitution.pdf";
+import ENIAD_ConstitutionPDF from "../assets/documents/Reglement Interieur ENIAD.pdf"; 
 
-//? Placeholder image for cards
-import docIcon from "../assets/documentImage2.png";
-import clubPic2 from "../assets/clubicondark.png"; // for header icon
+
+
+
+import docImage from "/public/docimage.jpg";
+import webImage from "/public/webimage.jpg";
+import clubPic2 from "/public/clubicon.png";
+import scholarityImage from "/public/scholarityPortal.png";
+import eniadlogoImage from "/public/eniadlogoImage.png";
+import umplogoImage from "/public/umplogoImage.png";
+
+
+
 
 const docs = [
-  { id: 1, name: "2025 Annual Plan (overview).pdf", href: AnnualPlanPDF, date: "Jan 1, 2025" },
-  { id: 2, name: "Opening Plan of the year 2025", href: OpeningPlanPDF, date: "Jan 5, 2025" },
-  { id: 3, name: "Club Constitution document", href: ClubConstPDF, date: "Jan 10, 2025" },
+  { id: 1, name: "2025 Annual Plan", href: AnnualPlanPDF, date: "Jan 1, 2025", img: docImage },
+  { id: 2, name: "Opening Plan 2025", href: OpeningPlanPDF, date: "Jan 5, 2025", img: docImage },
+  { id: 3, name: "Club Constitution", href: ClubConstPDF, date: "Jan 10, 2025", img: docImage },
 ];
 
-export default function AnnualPlan() {
+const resources = [
+  { id: 1, name: "ENIAD Constitution", href: ENIAD_ConstitutionPDF, img: docImage, type: "doc" },
+  { id: 2, name: "ENIAD Scholarity Portal", href: "https://scolarite-eniadb.ump.ma/", img: scholarityImage, type: "web" },
+  { id: 3, name: "ENIAD Website", href: "https://eniad.ump.ma/", img: eniadlogoImage, type: "web" },
+  { id: 4, name: "Mohamed First University", href: "https://www.ump.ma/", img: umplogoImage, type: "web" },
+];
+
+export default function AnnualPlan({ theme }) {
   const [previewFile, setPreviewFile] = useState(null);
+  const isDark = theme === "dark";
+
+  const cardBase =
+    "rounded-xl overflow-hidden border transition-all duration-300 hover:scale-105";
+
+  const cardTheme = isDark
+    ? "bg-[#12001f] border-[#5e17eb]/40 hover:shadow-[0_15px_40px_#5e17eb]"
+    : "bg-white border-gray-200 hover:shadow-cyan-500/40";
+
+  const btnTheme = isDark
+    ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
+    : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white";
 
   return (
     <PageWrapper>
-      <section className="pt-28 space-y-12 relative z-10">
+      <section className="pt-28 space-y-14">
 
-        {/* Page Header */}
+        {/* Club Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
           <img
             src={clubPic2}
             alt="Club Icon"
             className="w-16 h-16 object-cover shadow-md drop-shadow-[0_0_10px_rgba(0,0,0,0.7)]"
-            style={{ backgroundColor: "transparent" }}
           />
           <div>
-            <h1 className="text-3xl font-bold text-cyberBlack">
+            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
             </h1>
-            <p className="text-base text-gray-700">
+            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} text-base`}>
               Building practical cybersecurity skills, ethically and collaboratively.
             </p>
           </div>
         </header>
 
-        {/* Section Header */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
-            Annual Plan & Documents
-          </h2>
-          <p className="text-md md:text-lg text-gray-700 mb-6">
-            Official plans and documents for the year. Click to preview or download.
-          </p>
-        </div>
+        {/* Documents */}
+        <h2 className={`${isDark ? "text-white" : "text-black"} text-3xl font-extrabold`}>
+          Annual Plan & Documents
+        </h2>
 
-        {/* Documents Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {docs.map((d, index) => (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {docs.map((d, i) => (
             <motion.div
               key={d.id}
-              className="bg-white rounded-lg shadow-lg overflow-visible border border-gray-200
-                         cursor-pointer relative transform transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/40"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: i * 0.1 }}
+              className={`${cardBase} ${cardTheme}`}
             >
-              {/* Date badge */}
-              <div className="absolute -top-3 left-4 bg-cyan-700 text-white px-3 py-1 rounded-full font-semibold text-sm shadow">
-                {d.date}
+              {/* IMAGE FRAME */}
+              <div className="h-48 overflow-hidden">
+                <img src={d.img} className="w-full h-full object-cover" />
               </div>
 
-              {/* Card Body */}
-              <div className="p-6 flex flex-col items-center">
-                {/* Document Image */}
-                <img src={docIcon} alt="Document Icon" className="w-16 h-16 mb-2"/>
-                
-                {/* Divider line */}
-                <hr className="w-full border-t border-gray-300 mb-4"/>
+              {/* BODY */}
+              <div className="p-5 space-y-4">
+                <h3 className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
+                  {d.name}
+                </h3>
 
-                {/* Title */}
-                <h3 className="text-xl font-semibold mb-4 text-center">{d.name}</h3>
-
-                {/* Buttons */}
-                <div className="flex gap-2 mt-auto">
+                <div className="flex gap-3">
                   <button
                     onClick={() => setPreviewFile(d.href)}
-                    className="px-3 py-2 border rounded text-sm text-black transition-all duration-300
-                               transform hover:bg-cyan-600 hover:text-white hover:scale-105 hover:shadow-md"
+                    className={`px-3 py-2 border rounded text-sm ${btnTheme}`}
                   >
                     Preview
                   </button>
+
                   <a
                     href={d.href}
                     download
-                    className="px-3 py-2 border rounded text-sm text-black transition-all duration-300
-                               transform hover:bg-cyberTeal hover:scale-105 hover:shadow-md"
+                    className={`px-3 py-2 border rounded text-sm ${btnTheme}`}
                   >
                     Download
                   </a>
@@ -101,37 +114,104 @@ export default function AnnualPlan() {
             </motion.div>
           ))}
         </div>
+
+        {/* RESOURCES */}
+        <h2 className={`${isDark ? "text-white" : "text-black"} text-3xl font-extrabold`}>
+          ENIAD Documents & Resources
+        </h2>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {resources.map((r, i) => (
+            <motion.div
+              key={r.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className={`${cardBase} ${cardTheme}`}
+            >
+              {/* IMAGE */}
+              <div className="h-44 overflow-hidden">
+                <img src={r.img} className="w-full h-full object-cover" />
+              </div>
+
+              {/* BODY */}
+              <div className="p-5 space-y-4">
+                <h3 className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
+                  {r.name}
+                </h3>
+
+                <div className="flex gap-3">
+                  {r.type === "doc" ? (
+                    <>
+                      <button
+                        onClick={() => setPreviewFile(r.href)}
+                        className={`px-3 py-2 border rounded text-sm ${btnTheme}`}
+                      >
+                        Preview
+                      </button>
+
+                      <a
+                        href={r.href}
+                        download
+                        className={`px-3 py-2 border rounded text-sm ${btnTheme}`}
+                      >
+                        Download
+                      </a>
+                    </>
+                  ) : (
+                    <a
+                      href={r.href}
+                      target="_blank"
+                      className={`px-3 py-2 border rounded text-sm ${btnTheme}`}
+                    >
+                      Visit
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
-      {/* PDF Preview Modal */}
+          {/* MODAL */}
       <AnimatePresence>
         {previewFile && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-32"
+            className="fixed inset-0 bg-black/70 z-50 flex justify-center pt-32 px-4"
           >
             <motion.div
-              initial={{ scale: 0.8 }}
+              initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              className="bg-white w-full max-w-4xl h-[80vh] rounded shadow-lg flex flex-col"
+              exit={{ scale: 0.9 }}
+              className={`w-full max-w-4xl h-[80vh] rounded-xl overflow-hidden flex flex-col
+              ${isDark ? "bg-[#12001f]" : "bg-white"}`}
             >
-              <div className="flex justify-between items-center p-2 border-b">
-                <h3 className="font-bold text-lg">Document Preview</h3>
+              {/* Header */}
+              <div
+                className={`flex justify-between items-center px-4 py-2 border-b
+                ${isDark ? "border-[#5e17eb]/40 text-white" : "border-gray-200 text-black"}`}
+              >
+                <span className="font-semibold">Document Preview</span>
+
                 <button
                   onClick={() => setPreviewFile(null)}
-                  className="text-red-500 font-bold text-xl px-2"
+                  className={`text-xl font-bold transition
+                  ${isDark ? "text-[#c7b8ff] hover:text-white" : "text-gray-700 hover:text-black"}`}
                 >
                   &times;
                 </button>
               </div>
+
+              {/* PDF */}
               <iframe
                 src={previewFile}
-                className="flex-1 w-full"
+                className="flex-1 w-full bg-white"
                 title="PDF Preview"
-              ></iframe>
+              />
             </motion.div>
           </motion.div>
         )}

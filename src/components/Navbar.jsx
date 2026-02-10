@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import clubIcon from "../assets/clubicon.png";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import clubIcon from "/public/clubiconwhite.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -11,23 +12,20 @@ const links = [
   { to: "/writeups", label: "Write-ups", key: "writeups" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const loc = useLocation();
   const [notifications, setNotifications] = useState({});
 
-  // Load notifications from localStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("notifications") || "{}");
     setNotifications(stored);
   }, []);
 
-  // Helper: check if notification is active (<48h)
   const hasNotification = (key) => {
     if (!key || !notifications[key]) return false;
     return new Date() - new Date(notifications[key]) < 48 * 60 * 60 * 1000;
   };
 
-  // Remove notification when clicked
   const handleClick = (key) => {
     if (!key) return;
     const updated = { ...notifications };
@@ -37,41 +35,34 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-blue-950 text-white shadow-xl z-50 h-24">
-      {/* Scratches / Crack Overlay */}
+    <nav className="fixed top-0 left-0 w-full bg-[#5e17eb] text-white shadow-xl z-50 h-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.4)_1px,transparent_1px)] bg-[length:3px_3px] opacity-70 pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 h-full flex items-center justify-between relative">
-        {/* Logo Section */}
+      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
+        {/* Logo */}
         <div className="flex items-center gap-4 z-20">
-          <img
-            src={clubIcon}
-            alt="Club Logo"
-            className="w-16 h-16 object-cover shadow-md drop-shadow-[0_0_10px_rgba(0,0,0,0.7)]"
-          />
+          <div className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
+            <img src={clubIcon} className="w-16 h-16 object-cover" />
+          </div>
+
           <div>
-            <div className="font-extrabold text-2xl text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.95)]">
-              ECS
-            </div>
-            <div className="text-sm text-gray-300 italic tracking-wide">
-              ENIAD — Cybersecurity Society
-            </div>
+            <div className="font-extrabold text-2xl">SECORA CLUB</div>
+            <div className="text-sm text-white/80 italic">ENIAD — Cybersecurity Society</div>
           </div>
         </div>
 
-        {/* Centered Menu Links (Desktop) */}
-        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-10 text-lg font-semibold z-10">
+        {/* Desktop Links */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10 text-lg font-semibold">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => handleClick(l.key)}
-              className={`relative transition-all duration-300 ease-in-out hover:scale-110 hover:text-cyan-200 hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.8)] ${
-                loc.pathname === l.to ? "text-cyan-300 font-bold" : "text-white"
+              className={`relative transition hover:scale-110 ${
+                loc.pathname === l.to ? "font-extrabold scale-110" : "text-white/90"
               }`}
             >
               {l.label}
-              {/* Notification dot */}
               {hasNotification(l.key) && (
                 <span className="absolute -top-1 -right-3 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
               )}
@@ -79,18 +70,45 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Menu */}
-        <div className="ml-auto md:hidden z-20">
-          <MobileMenu links={links} notifications={notifications} handleClick={handleClick} />
+        {/* Right controls */}
+        <div className="flex items-center gap-4 z-20">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-white/20 border border-white/30"
+          >
+            {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+          </button>
+
+          <div className="md:hidden">
+            <MobileMenu
+              links={links}
+              notifications={notifications}
+              handleClick={handleClick}
+              theme={theme}
+              toggleTheme={toggleTheme}
+            />
+          </div>
         </div>
       </div>
     </nav>
   );
 }
 
-function MobileMenu({ links, notifications, handleClick }) {
-  const [open, setOpen] = React.useState(false);
+/* ================= MOBILE MENU ================= */
+
+function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
+  const [open, setOpen] = useState(false);
   const loc = useLocation();
+
+  // Auto close on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [loc.pathname]);
+
+  // Scroll lock
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+  }, [open]);
 
   const hasNotification = (key) => {
     if (!key || !notifications[key]) return false;
@@ -99,48 +117,55 @@ function MobileMenu({ links, notifications, handleClick }) {
 
   return (
     <>
-      {/* Toggle button */}
-      <button onClick={() => setOpen((s) => !s)} className="p-2 z-50 relative">
-        {open ? (
-          <FaTimes size={28} className="text-white transition-transform duration-300 rotate-90" />
-        ) : (
-          <FaBars size={28} className="text-white transition-transform duration-300" />
-        )}
+      <button onClick={() => setOpen(true)}>
+        <FaBars size={26} />
       </button>
 
-      {/* Fullscreen overlay */}
+      {/* Overlay */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 bg-black/60 backdrop-blur transition ${
           open ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
-        onClick={() => setOpen(false)}
-      ></div>
+      />
 
-      {/* Side drawer */}
+      {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-blue-950 shadow-2xl transform transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-80 bg-[#5e17eb] p-8 transition-transform duration-500 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 text-2xl font-semibold">
+        <div className="flex justify-between items-center mb-10">
+          <span className="text-xl font-bold">Menu</span>
+          <FaTimes size={26} onClick={() => setOpen(false)} />
+        </div>
+
+        <div className="flex flex-col gap-8 text-xl">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              onClick={() => {
-                setOpen(false);
-                handleClick(l.key);
-              }}
-              className={`relative transition-all duration-300 hover:text-cyan-300 ${
-                loc.pathname === l.to ? "text-cyan-300" : "text-white"
+              onClick={() => handleClick(l.key)}
+              className={`flex justify-between ${
+                loc.pathname === l.to ? "font-extrabold" : ""
               }`}
             >
               {l.label}
               {hasNotification(l.key) && (
-                <span className="absolute -top-1 -right-3 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
               )}
             </Link>
           ))}
+        </div>
+
+        {/* Mobile theme toggle */}
+        <div className="mt-12">
+          <button
+            onClick={toggleTheme}
+            className="w-full py-3 rounded-lg bg-white/20 border border-white/30"
+          >
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </button>
         </div>
       </div>
     </>

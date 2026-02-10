@@ -4,7 +4,7 @@ import clubPic2 from "/public/clubicon.png";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function WriteUps({ theme }) {
+export default function WriteUps({ theme = "light" }) {
   const [allPosts, setAllPosts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +18,6 @@ export default function WriteUps({ theme }) {
       if (!res.ok) throw new Error("API error");
 
       const data = await res.json();
-
       setAllPosts(data || []);
     } catch (err) {
       console.error("RSS load failed:", err);
@@ -67,8 +66,15 @@ export default function WriteUps({ theme }) {
         {loading && <p className="text-center text-gray-400">Loading writeups...</p>}
 
         {/* Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPage}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.4 }}
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          >
             {posts.map((p, index) => (
               <motion.div
                 key={p.id}
@@ -89,6 +95,15 @@ export default function WriteUps({ theme }) {
                   <span>{`0${index + 1}`}</span>
                   <span className="italic text-sm">{p.date}</span>
                 </div>
+
+                {/* Image preview */}
+                {p.image && (
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-48 object-cover"
+                  />
+                )}
 
                 <div className="p-6">
                   <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl mb-2`}>
@@ -113,15 +128,17 @@ export default function WriteUps({ theme }) {
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Pagination */}
         <div className="flex justify-center items-center gap-4 mt-12">
 
-          <button disabled={currentPage === 1}
+          <button
+            disabled={currentPage === 1}
             onClick={() => setCurrentPage(p => p - 1)}
-            className="px-5 py-2 rounded-full border">
+            className="px-5 py-2 rounded-full border"
+          >
             Prev
           </button>
 
@@ -139,9 +156,11 @@ export default function WriteUps({ theme }) {
             ))}
           </div>
 
-          <button disabled={currentPage === totalPages}
+          <button
+            disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(p => p + 1)}
-            className="px-5 py-2 rounded-full border">
+            className="px-5 py-2 rounded-full border"
+          >
             Next
           </button>
 

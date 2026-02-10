@@ -1,9 +1,8 @@
 // import images properly
-import yahya from "/public/clubMembers/yahya.png";
 import abdo from "/public/clubMembers/abdo.jpeg";
 import said from "/public/clubMembers/said.png";
 import fati from "/public/clubMembers/fati.png";
-import unknown from "/public/newunknown.png";
+import newunknown from "/public/newunkown.png";
 import ihsane from "/public/clubMembers/ihsane.jpeg";
 import safouane from "/public/clubMembers/safouane.jpeg";
 import AIT_BAOUI_Mohamed_amine from "/public/clubMembers/AIT_BAOUI_Mohamed_amine.jpeg";
@@ -21,13 +20,13 @@ const members = [
     id: 1,
     name: "Yahya EL OURAK",
     role: "President",
-    image: unknown,
+    image: newunknown,
     linkedin: "https://linkedin.com/in/example2",
     bio: "Yahya is the head chief of our club"
   },
   {
     id: 2,
-    name: "Abdellatif Tazarni",
+    name: "Abdellatif TAZARNIi",
     role: "Project Manager",
     image: abdo,
     linkedin: "https://www.linkedin.com/in/rachid-el-magroua-619189304/",
@@ -85,7 +84,7 @@ const members = [
     id: 9,
     name: "Walid ZAHRAOUI",
     role: "Vice President",
-    image: unknown,
+    image: newunknown,
     linkedin: "https://linkedin.com/in/example3",
     bio: "Walid is the right hand of the president, he is here to help and support him in all his work and responsibilities."
   },
@@ -107,7 +106,7 @@ const members = [
   },
   {
     id: 12,
-    name: "Aymen Aaleh AYT BRAHIM",
+    name: "Aymen Saleh AYT BRAHIM",
     role: "Unkown",
     image: aymen_saleh_ayt_brahim,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
@@ -131,7 +130,7 @@ const members = [
   },
   {
     id: 15,
-    name: "BELKHIR Chaymae",
+    name: "Chaymae BELKHIR",
     role: "Designer",
     image: chaimae,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
@@ -141,7 +140,7 @@ const members = [
     id: 16,
     name: "Zineb",
     role: "Unkown",
-    image: unknown,
+    image: newunknown,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
     bio: "Social Media Manager."
   }

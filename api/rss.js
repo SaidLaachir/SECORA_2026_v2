@@ -1,30 +1,42 @@
-// server/api/rss.js
-import express from "express";
 import Parser from "rss-parser";
-
-const router = express.Router();
 const parser = new Parser();
 
-router.get("/", async (req, res) => {
+const FEEDS = [
+  "https://feeds.feedburner.com/TheHackersNews",
+  "https://www.bleepingcomputer.com/feed/",
+  "https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml",
+];
+
+export default async function handler(req, res) {
   try {
-    // Replace this URL with the RSS feed you want
-    const feed = await parser.parseURL("https://feeds.bbci.co.uk/news/rss.xml");
+    let allItems = [];
 
-    // Map RSS items to a simpler JSON format
-    const items = feed.items.map((item, index) => ({
-      id: index,
-      title: item.title,
-      date: item.pubDate ? new Date(item.pubDate).toLocaleDateString() : "",
-      description: item.contentSnippet || item.content || "",
-      link: item.link,
-      image: item.enclosure?.url || null,
-    }));
+    for (const url of FEEDS) {
+      try {
+        const feed = await parser.parseURL(url);
 
-    res.json(items);
+        const items = feed.items.map((item) => ({
+          title: item.title,
+          link: item.link,
+          date: item.pubDate || item.isoDate || "",
+          description: item.contentSnippet || "",
+          source: feed.title,
+        }));
+
+        allItems.push(...items);
+      } catch (e) {
+        console.error("Feed failed:", url);
+      }
+    }
+
+    // Sort newest first
+    allItems.sort(
+      (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
+    );
+
+    res.status(200).json(allItems.slice(0, 50));
   } catch (err) {
-    console.error("RSS fetch failed:", err);
-    res.status(500).json({ error: "Failed to fetch RSS feed" });
+    console.error(err);
+    res.status(500).json({ error: "RSS aggregation failed" });
   }
-});
-
-export default router;
+}

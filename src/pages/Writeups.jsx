@@ -12,7 +12,7 @@ export default function WriteUps({ theme }) {
 
   async function loadFeed(page = 1) {
     try {
-      const res = await fetch(`http://localhost:5000/api/rss?page=${page}&limit=${limit}`);
+      const res = await fetch(`/api/rss?page=${page}&limit=${limit}`);
       const data = await res.json();
       setPosts(data.items || []);
       setTotalPages(data.totalPages || 1);

@@ -21,7 +21,7 @@ const members = [
     id: 1,
     name: "Yahya EL OURAK",
     role: "President",
-    image: unkown,
+    image: unknown,
     linkedin: "https://linkedin.com/in/example2",
     bio: "Yahya is the head chief of our club"
   },

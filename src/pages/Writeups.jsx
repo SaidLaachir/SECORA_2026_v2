@@ -4,6 +4,8 @@ import clubPic2 from "/public/clubicon.png";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
+const FALLBACK_IMAGE = "/public/default-writeup.jpg";
+
 export default function WriteUps({ theme = "light" }) {
   const [allPosts, setAllPosts] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -75,60 +77,64 @@ export default function WriteUps({ theme = "light" }) {
             transition={{ duration: 0.35, ease: "easeInOut" }}
             className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
-            {posts.map((p, index) => (
-              <motion.div
-                key={p.id}
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className={`rounded-lg shadow-lg overflow-hidden border
-                  ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
-                `}
-              >
-                <div className={`px-4 py-2 flex justify-between ${
-                  theme === "dark"
-                    ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
-                    : "bg-cyan-700 text-white"
-                }`}>
-                  <span>{`0${index + 1}`}</span>
-                  <span className="italic text-sm">{p.date}</span>
-                </div>
+            {posts.map((p, index) => {
+              const imageSrc = p.image && p.image.trim() !== "" ? p.image : FALLBACK_IMAGE;
 
-                {/* Image with fallback */}
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="w-full h-48 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "/public/default-writeup.jpg";
-                  }}
-                />
+              return (
+                <motion.div
+                  key={p.id}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className={`rounded-lg shadow-lg overflow-hidden border
+                    ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
+                  `}
+                >
+                  <div className={`px-4 py-2 flex justify-between ${
+                    theme === "dark"
+                      ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
+                      : "bg-cyan-700 text-white"
+                  }`}>
+                    <span>{`0${index + 1}`}</span>
+                    <span className="italic text-sm">{p.date}</span>
+                  </div>
 
-                <div className="p-6">
-                  <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl mb-2`}>
-                    {p.title}
-                  </h3>
+                  {/* Image with guaranteed fallback */}
+                  <img
+                    src={imageSrc}
+                    alt={p.title}
+                    className="w-full h-48 object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_IMAGE;
+                    }}
+                  />
 
-                  <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mb-4`}>
-                    {p.description}
-                  </p>
+                  <div className="p-6">
+                    <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl mb-2`}>
+                      {p.title}
+                    </h3>
 
-                  <Link
-                    to={`/writeup/${p.id}`}
-                    state={{ post: p }}
-                    className={`inline-block px-4 py-2 text-sm rounded border transition
-                      ${theme === "dark"
-                        ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
-                        : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"}
-                    `}
-                  >
-                    Read More
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+                    <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mb-4`}>
+                      {p.description}
+                    </p>
+
+                    <Link
+                      to={`/writeup/${p.id}`}
+                      state={{ post: p }}
+                      className={`inline-block px-4 py-2 text-sm rounded border transition
+                        ${theme === "dark"
+                          ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
+                          : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"}
+                      `}
+                    >
+                      Read More
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </AnimatePresence>
 

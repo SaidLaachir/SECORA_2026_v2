@@ -3,7 +3,7 @@ import yahya from "/public/clubMembers/yahya.png";
 import abdo from "/public/clubMembers/abdo.jpeg";
 import said from "/public/clubMembers/said.png";
 import fati from "/public/clubMembers/fati.png";
-import unknown from "/public/clubMembers/unknown.jpg";
+import unknown from "/public/clubMembers/newunknown.png";
 import ihsane from "/public/clubMembers/ihsane.jpeg";
 import safouane from "/public/clubMembers/safouane.jpeg";
 import AIT_BAOUI_Mohamed_amine from "/public/clubMembers/AIT_BAOUI_Mohamed_amine.jpeg";
@@ -21,7 +21,7 @@ const members = [
     id: 1,
     name: "Yahya EL OURAK",
     role: "President",
-    image: yahya,
+    image: unkown,
     linkedin: "https://linkedin.com/in/example2",
     bio: "Yahya is the head chief of our club"
   },
@@ -126,7 +126,7 @@ const members = [
     name: "Yahya MOHIB",
     role: "Communication Manager",
     image: yahyaMohib,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
+    linkedin: "https://www.linkedin.com/in/yahya-mohib-48070531b",
     bio: "Yahya is the communication manager of our club, he is responsible for managing and coordinating all the communication activities of the club."
   },
   {

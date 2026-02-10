@@ -3,7 +3,7 @@ import yahya from "/public/clubMembers/yahya.png";
 import abdo from "/public/clubMembers/abdo.jpeg";
 import said from "/public/clubMembers/said.png";
 import fati from "/public/clubMembers/fati.png";
-import unknown from "/public/clubMembers/newunknown.png";
+import unknown from "/public/newunknown.png";
 import ihsane from "/public/clubMembers/ihsane.jpeg";
 import safouane from "/public/clubMembers/safouane.jpeg";
 import AIT_BAOUI_Mohamed_amine from "/public/clubMembers/AIT_BAOUI_Mohamed_amine.jpeg";
@@ -29,7 +29,7 @@ const members = [
     id: 2,
     name: "Abdellatif Tazarni",
     role: "Project Manager",
-    image: abdo, // replace
+    image: abdo,
     linkedin: "https://www.linkedin.com/in/rachid-el-magroua-619189304/",
     bio: "Abedllatif is the project manager of our club, he is responsible for managing and coordinating all the projects and activities of the club."
   },

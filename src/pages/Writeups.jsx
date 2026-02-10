@@ -41,9 +41,9 @@ export default function WriteUps({ theme = "light" }) {
   const totalPages = Math.ceil(allPosts.length / limit);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 12 },
     visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
+    exit: { opacity: 0, y: -12 },
   };
 
   return (
@@ -69,10 +69,10 @@ export default function WriteUps({ theme = "light" }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
             className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {posts.map((p, index) => (
@@ -82,7 +82,7 @@ export default function WriteUps({ theme = "light" }) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className={`rounded-lg shadow-lg overflow-hidden border
                   ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
                 `}
@@ -96,14 +96,15 @@ export default function WriteUps({ theme = "light" }) {
                   <span className="italic text-sm">{p.date}</span>
                 </div>
 
-                {/* Image preview */}
-                {p.image && (
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full h-48 object-cover"
-                  />
-                )}
+                {/* Image with fallback */}
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-48 object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = "/public/default-writeup.jpg";
+                  }}
+                />
 
                 <div className="p-6">
                   <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl mb-2`}>

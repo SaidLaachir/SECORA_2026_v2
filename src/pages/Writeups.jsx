@@ -14,9 +14,14 @@ export default function WriteUps({ theme }) {
     try {
       const res = await fetch(`/api/rss?page=${page}&limit=${limit}`);
       const data = await res.json();
-      setPosts(data.items || []);
-      setTotalPages(data.totalPages || 1);
-      setCurrentPage(data.page || 1);
+
+      // 🔥 API returns ARRAY, not object
+      setPosts(data);
+
+      // simple pagination for now
+      setTotalPages(1);
+      setCurrentPage(page);
+
     } catch (err) {
       console.error("RSS load failed:", err);
       setPosts([]);
@@ -29,7 +34,6 @@ export default function WriteUps({ theme }) {
     loadFeed(currentPage);
   }, [currentPage]);
 
-  // Animation for cards
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -39,7 +43,6 @@ export default function WriteUps({ theme }) {
   return (
     <PageWrapper>
       <section className="pt-28 pb-16 space-y-12 relative z-10">
-        {/* Club Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
           <img
             src={clubPic2}
@@ -56,7 +59,6 @@ export default function WriteUps({ theme }) {
           </div>
         </header>
 
-        {/* Page Header */}
         <div>
           <h2 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl md:text-4xl font-extrabold mb-2`}>
             Write-ups
@@ -66,7 +68,6 @@ export default function WriteUps({ theme }) {
           </p>
         </div>
 
-        {/* Write-up posts */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="wait">
             {posts.map((p, index) => (
@@ -82,19 +83,15 @@ export default function WriteUps({ theme }) {
                   ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
                 `}
               >
-                {/* Banner */}
-                <div
-                  className={`px-4 py-2 flex justify-between items-center ${
-                    theme === "dark"
-                      ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
-                      : "bg-cyan-700 text-white"
-                  }`}
-                >
+                <div className={`px-4 py-2 flex justify-between items-center ${
+                  theme === "dark"
+                    ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
+                    : "bg-cyan-700 text-white"
+                }`}>
                   <span className="font-bold text-lg">{`0${index + 1}`}</span>
                   <span className="italic text-sm">{p.date}</span>
                 </div>
 
-                {/* Content */}
                 <div className="p-6">
                   <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl font-semibold mb-2`}>
                     {p.title}
@@ -116,41 +113,6 @@ export default function WriteUps({ theme }) {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
-
-        {/* Pagination */}
-        <div className="flex justify-center gap-3 mt-10">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((prev) => prev - 1)}
-            className="px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 disabled:bg-gray-400"
-          >
-            Prev
-          </button>
-
-          {[...Array(totalPages)].map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`px-4 py-2 rounded ${
-                currentPage === i + 1
-                  ? "bg-cyan-800 text-white"
-                  : theme === "dark"
-                    ? "bg-[#2a003f] text-gray-300 hover:bg-[#5e17eb]/40"
-                    : "bg-cyan-100 text-cyan-700 hover:bg-cyan-200"
-              }`}
-            >
-              {i + 1}
-            </button>
-          ))}
-
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((prev) => prev + 1)}
-            className="px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 disabled:bg-gray-400"
-          >
-            Next
-          </button>
         </div>
       </section>
     </PageWrapper>

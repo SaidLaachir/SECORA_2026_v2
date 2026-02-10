@@ -11,6 +11,9 @@ const FEEDS = [
   "https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml",
 ];
 
+// 👉 Default image (replace with your own if needed)
+const DEFAULT_IMAGE = "/public/cybernews.jpg";
+
 export default async function handler(req, res) {
   try {
     let allItems = [];
@@ -22,7 +25,6 @@ export default async function handler(req, res) {
         const items = feed.items.map((item) => {
           let image = null;
 
-          // Try multiple RSS image fields safely
           if (item.enclosure?.url) {
             image = item.enclosure.url;
           } else if (item["media:content"]?.url) {
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
             date: item.pubDate || item.isoDate || "",
             description: item.contentSnippet || "",
             source: feed.title,
-            image, // <-- added
+            image: image || DEFAULT_IMAGE, // ✅ fallback added
           };
         });
 

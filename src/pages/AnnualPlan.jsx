@@ -15,7 +15,7 @@ import webImage from "/public/webimage.jpg";
 import clubPic2 from "/public/clubicon.png";
 import scholarityImage from "/public/scholarityPortal.png";
 import eniadlogoImage from "/public/eniadlogoImage.png";
-import umplogoImage from "/public/umplogoImage.png";
+import umplogoImage from "/public/umpLogoImage.png";
 
 
 

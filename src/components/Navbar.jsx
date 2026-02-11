@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import clubIcon from "/public/clubiconwhite.png";
-import clubIconMobile from "/public/clubicon.png"; // mobile logo
+import clubIconMobile from "/public/clubiconimage";
 
 const links = [
   { to: "/", label: "Home" },
@@ -53,19 +53,6 @@ export default function Navbar({ theme, toggleTheme }) {
             </Link>
           </div>
 
-          {/* Mobile centered logo + text */}
-          <div className="flex md:hidden absolute left-1/2 -translate-x-1/2 items-center gap-3">
-            <Link
-              to="/"
-              className="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 shadow-2xl border border-white/30"
-            >
-              <img src={clubIconMobile} className="w-12 h-12 object-cover" />
-              <h1 className="text-white font-extrabold text-lg tracking-wide">
-                SECORA CLUB
-              </h1>
-            </Link>
-          </div>
-
           {/* Desktop links */}
           <div className="hidden md:flex gap-6 text-lg font-semibold whitespace-nowrap ml-6">
             {links.map((l) => (
@@ -86,14 +73,39 @@ export default function Navbar({ theme, toggleTheme }) {
           </div>
         </div>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-4 z-20">
+        {/* Mobile center block */}
+        <div className="flex md:hidden absolute left-1/2 -translate-x-1/2 items-center gap-3">
+          {/* Theme toggle FIRST (left of text & logo) */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-white/20 border border-white/30"
           >
-            {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+            {theme === "dark" ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
           </button>
+
+          {/* Text + Logo (text on the LEFT of logo) */}
+          <Link
+            to="/"
+            className="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 shadow-2xl border border-white/30"
+          >
+            <h1 className="text-white font-extrabold text-lg tracking-wide">
+              SECORA CLUB
+            </h1>
+            <img src={clubIconMobile} className="w-12 h-12 object-cover" />
+          </Link>
+        </div>
+
+        {/* Right controls */}
+        <div className="flex items-center gap-4 z-20">
+          {/* Desktop theme toggle */}
+          <div className="hidden md:block">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-white/20 border border-white/30"
+            >
+              {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+            </button>
+          </div>
 
           {/* Mobile menu icon */}
           <div className="md:hidden">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageWrapper from "../components/PageWrapper";
-import clubPic2 from "/public/clubicon.png";
+import clubPicLight from "/public/clubicon.png";       // logo for light mode
+import clubPicDark from "/public/clubicondark.png";  // logo for dark mode
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -54,7 +55,11 @@ export default function WriteUps({ theme = "light" }) {
 
         {/* Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-          <img src={clubPic2} className="w-16 h-16" />
+          <img
+            src={theme === "dark" ? clubPicDark : clubPicLight}
+            className="w-16 h-16"
+            alt="Club Logo"
+          />
           <div>
             <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
@@ -112,7 +117,7 @@ export default function WriteUps({ theme = "light" }) {
                   />
 
                   <div className="p-6">
-                    {/* Title now bold and prominent */}
+                    {/* Title now bold */}
                     <h3 className={`${theme === "dark" ? "text-white font-bold" : "text-black font-bold"} text-xl mb-2`}>
                       {p.title}
                     </h3>

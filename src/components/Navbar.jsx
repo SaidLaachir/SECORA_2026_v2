@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import clubIcon from "/public/clubiconwhite.png";
+import clubIconMobile from "/public/clubicon.png"; // mobile logo
 
 const links = [
   { to: "/", label: "Home" },
@@ -40,19 +41,28 @@ export default function Navbar({ theme, toggleTheme }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.4)_1px,transparent_1px)] bg-[length:3px_3px] opacity-70 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
-        {/* Left side container */}
+        {/* Left container */}
         <div className="flex items-center flex-1">
-          {/* Desktop logo (left) */}
+          {/* Desktop logo */}
           <div className="hidden md:flex items-center">
-            <Link to="/" className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
+            <Link
+              to="/"
+              className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30"
+            >
               <img src={clubIcon} className="w-16 h-16 object-cover" />
             </Link>
           </div>
 
-          {/* Mobile logo (centered) */}
-          <div className="flex md:hidden absolute left-1/2 -translate-x-1/2">
-            <Link to="/" className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
-              <img src={clubIcon} className="w-16 h-16 object-cover" />
+          {/* Mobile centered logo + text */}
+          <div className="flex md:hidden absolute left-1/2 -translate-x-1/2 items-center gap-3">
+            <Link
+              to="/"
+              className="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 shadow-2xl border border-white/30"
+            >
+              <img src={clubIconMobile} className="w-12 h-12 object-cover" />
+              <h1 className="text-white font-extrabold text-lg tracking-wide">
+                SECORA CLUB
+              </h1>
             </Link>
           </div>
 
@@ -85,7 +95,7 @@ export default function Navbar({ theme, toggleTheme }) {
             {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
           </button>
 
-          {/* Mobile menu icon only */}
+          {/* Mobile menu icon */}
           <div className="md:hidden">
             <MobileMenu
               links={links}

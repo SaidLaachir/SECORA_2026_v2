@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import members from "../data/members";
 import MemberCard from "../components/MemberCard";
 import PageWrapper from "../components/PageWrapper";
-import clubPic2 from "/public/clubicon.png";
+import clubPicLight from "/public/clubicon.png";          // light mode logo
+import clubPicDark from "/public/iconlogoheaderdark.png"; // dark mode logo
 
 export default function Members({ theme }) {
   const [openMemberId, setOpenMemberId] = useState(null);
@@ -18,12 +19,16 @@ export default function Members({ theme }) {
 
         {/* Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-          <img src={clubPic2} className="w-16 h-16" />
+          <img
+            src={isDark ? clubPicDark : clubPicLight}
+            className="w-16 h-16"
+            alt="Club Logo"
+          />
           <div>
-            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
+            <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
             </h1>
-            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
+            <p className={`${isDark ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills
             </p>
           </div>

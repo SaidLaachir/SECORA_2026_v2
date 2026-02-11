@@ -35,7 +35,7 @@ export default function WriteUpDetail({ theme }) {
 
   return (
     <PageWrapper>
-      <section className="pt-28 pb-16 max-w-4xl mx-auto space-y-6">
+      <section className="pt-28 pb-16 max-w-4xl mx-auto space-y-8">
 
         {/* Title */}
         <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl md:text-4xl font-extrabold`}>
@@ -56,8 +56,8 @@ export default function WriteUpDetail({ theme }) {
           />
         )}
 
-        {/* Description */}
-        <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mt-4 whitespace-pre-line`}>
+        {/* Enlarged Description */}
+        <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mt-6 whitespace-pre-line text-lg leading-relaxed`}>
           {post.description}
         </p>
 
@@ -79,16 +79,13 @@ export default function WriteUpDetail({ theme }) {
           </a>
         )}
 
-        {/* Back button */}
-        <div className="text-center mt-4">
+        {/* Back button (distinct style) */}
+        <div className="text-center mt-6">
           <Link
             to="/writeups"
             className={`
-              inline-block px-6 py-2 rounded border transition
-              ${theme === "dark"
-                ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
-                : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
-              }
+              inline-block px-6 py-2 rounded bg-gray-200 text-gray-800 font-medium hover:bg-gray-300 transition
+              ${theme === "dark" ? "bg-gray-700 text-gray-100 hover:bg-gray-600" : ""}
             `}
           >
             Back to Write-ups

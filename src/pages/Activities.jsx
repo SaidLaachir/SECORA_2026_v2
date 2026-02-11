@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PageWrapper from "../components/PageWrapper";
-import ActivityCard from "../components/ActivityCard";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -35,7 +34,6 @@ export default function Activities({ theme }) {
     navigate(`/activity/${activityId}`);
   };
 
-  // Card animation variants
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -88,8 +86,7 @@ export default function Activities({ theme }) {
                   ${theme === "dark"
                     ? "bg-[#1a0033] border-[#5e17eb]/40"
                     : "bg-white border-gray-200"
-                  }
-                `}
+                  }`}
               >
                 <div className={`px-4 py-2 flex justify-between items-center
                   bg-cyan-700 text-white
@@ -172,7 +169,7 @@ export default function Activities({ theme }) {
         <div className="mt-12 text-center space-y-2">
           <h3 className={`font-bold text-2xl md:text-3xl mb-3 ${theme === "dark" ? "text-white" : "text-black"}`}>Join our socials</h3>
           <div className="flex justify-center gap-4 flex-wrap">
-            {[ 
+            {[
               { href: "https://www.instagram.com/e_cybersec_club/", name: "Instagram", color: "#E4405F" },
               { href: "https://www.linkedin.com/company/akira-club/posts/?feedView=all", name: "LinkedIn", color: "#0077B5" },
               { href: "https://discord.gg/rPVBFPvq", name: "Discord", color: "#5865F2" },
@@ -183,14 +180,16 @@ export default function Activities({ theme }) {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className={`px-4 py-2 rounded border transition-all duration-300 transform hover:scale-105 hover:text-white`}
+                className="px-4 py-2 rounded border transition-all duration-300 transform hover:scale-105"
                 style={{
                   borderColor: theme === "dark" ? "#8b5cf6" : "#ccc",
                   backgroundColor: theme === "dark" ? "#1a0033" : "transparent",
                   color: theme === "dark" ? "#c7b8ff" : "black",
                 }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = social.color}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = theme === "dark" ? "#1a0033" : "transparent"}
               >
-                {social.name}
+                <span className="text-white font-semibold">{social.name}</span>
               </a>
             ))}
           </div>

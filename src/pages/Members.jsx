@@ -18,19 +18,13 @@ export default function Members({ theme }) {
 
         {/* Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-          <img
-            src={clubPic2}
-            alt="Club Icon"
-            className="w-16 h-16 object-cover shadow-md drop-shadow-[0_0_10px_rgba(0,0,0,0.7)]"
-          />
-
+          <img src={clubPic2} className="w-16 h-16" />
           <div>
-            <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl font-bold`}>
+            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
             </h1>
-
-            <p className={`${isDark ? "text-gray-300" : "text-black"} text-base`}>
-              Building practical cybersecurity skills, ethically and collaboratively.
+            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
+              Building practical cybersecurity skills
             </p>
           </div>
         </header>

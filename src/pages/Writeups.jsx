@@ -51,20 +51,20 @@ export default function WriteUps({ theme = "light" }) {
 
   return (
     <PageWrapper>
-      <section className="pt-28 pb-16 space-y-12 relative z-10">
+      <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 space-y-10 sm:space-y-12 relative z-10 px-3 sm:px-6">
 
         {/* Header */}
-        <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
+        <header className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-center sm:text-left">
           <img
             src={theme === "dark" ? clubPicDark : clubPicLight}
-            className="w-16 h-16"
+            className="w-14 h-14 sm:w-16 sm:h-16"
             alt="Club Logo"
           />
           <div>
-            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
+            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-2xl sm:text-3xl font-bold`}>
               SECORA Club — ENIAD
             </h1>
-            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
+            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} text-sm sm:text-base`}>
               Building practical cybersecurity skills
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function WriteUps({ theme = "light" }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3"
           >
             {posts.map((p, index) => {
               const imageSrc = p.image && p.image.trim() !== "" ? p.image : FALLBACK_IMAGE;
@@ -97,32 +97,31 @@ export default function WriteUps({ theme = "light" }) {
                     ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
                   `}
                 >
-                  <div className={`px-4 py-2 flex justify-between ${
+                  <div className={`px-4 py-2 flex justify-between text-sm sm:text-base ${
                     theme === "dark"
                       ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
                       : "bg-cyan-700 text-white"
                   }`}>
                     <span>{`0${index + 1}`}</span>
-                    <span className="italic text-sm">{p.date}</span>
+                    <span className="italic text-xs sm:text-sm">{p.date}</span>
                   </div>
 
                   {/* Image with guaranteed fallback */}
                   <img
                     src={imageSrc}
                     alt={p.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-44 sm:h-48 object-cover"
                     onError={(e) => {
                       e.currentTarget.src = FALLBACK_IMAGE;
                     }}
                   />
 
-                  <div className="p-6">
-                    {/* Title now bold */}
-                    <h3 className={`${theme === "dark" ? "text-white font-bold" : "text-black font-bold"} text-xl mb-2`}>
+                  <div className="p-4 sm:p-6">
+                    <h3 className={`${theme === "dark" ? "text-white font-bold" : "text-black font-bold"} text-lg sm:text-xl mb-2`}>
                       {p.title}
                     </h3>
 
-                    <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mb-4`}>
+                    <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} text-sm sm:text-base mb-4`}>
                       {p.description}
                     </p>
 
@@ -145,13 +144,14 @@ export default function WriteUps({ theme = "light" }) {
         </AnimatePresence>
 
         {/* Pagination */}
-        <div className="flex justify-center items-center gap-4 mt-12 select-none">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-10 sm:mt-12 select-none">
+
           {/* Prev Button */}
           <motion.button
             whileTap={{ scale: 0.95 }}
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
-            className={`px-5 py-2 rounded-full border font-medium transition
+            className={`px-4 py-2 rounded-full border text-sm sm:text-base font-medium transition
               ${
                 theme === "dark"
                   ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
@@ -162,13 +162,13 @@ export default function WriteUps({ theme = "light" }) {
           </motion.button>
 
           {/* Page Numbers */}
-          <div className="flex gap-3">
+          <div className="flex gap-2 overflow-x-auto max-w-full px-1">
             {[...Array(totalPages)].map((_, i) => (
               <motion.button
                 key={i}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setCurrentPage(i + 1)}
-                className={`w-10 h-10 flex items-center justify-center rounded-full border font-medium transition
+                className={`min-w-[40px] h-10 flex items-center justify-center rounded-full border text-sm sm:text-base font-medium transition
                   ${
                     currentPage === i + 1
                       ? theme === "dark"
@@ -189,7 +189,7 @@ export default function WriteUps({ theme = "light" }) {
             whileTap={{ scale: 0.95 }}
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
-            className={`px-5 py-2 rounded-full border font-medium transition
+            className={`px-4 py-2 rounded-full border text-sm sm:text-base font-medium transition
               ${
                 theme === "dark"
                   ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"

@@ -80,7 +80,7 @@ const branchData = {
   },
 
   "Quantum Computing": {
-    description: "Explore quantum computing and post-quantum cryptography.",
+    description: "Quantum computing is no longer confined to science fiction or theoretical physics. It’s rapidly becoming a groundbreaking technology poised to redefine how we approach data, algorithms, and cybersecurity. Particularly for IT managers, cybersecurity professionals, and tech enthusiasts, understanding how quantum computing reshapes the cybersecurity landscape isn’t just fascinating; it’s essential.",
     roles: [
       { title: "Quantum Researcher", salary: "$90k - $180k" },
       { title: "Quantum Software Engineer", salary: "$80k - $160k" },

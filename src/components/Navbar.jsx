@@ -7,7 +7,7 @@ import clubIcon from "/public/clubiconwhite.png";
 const links = [
   { to: "/", label: "Home" },
   { to: "/members", label: "Members" },
-  { to: "/annual-plan", label: "Annual Plan", key: "annualPlan" },
+  { to: "/annual-plan", label: "Documents", key: "annualPlan" },
   { to: "/activities", label: "Activities", key: "activities" },
   { to: "/writeups", label: "Write-ups", key: "writeups" },
 ];

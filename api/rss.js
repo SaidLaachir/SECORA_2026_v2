@@ -32,22 +32,15 @@ export default async function handler(req, res) {
             image = item["media:thumbnail"].url;
           }
 
-          // ✅ Use content for a longer paragraph if available, otherwise fallback
+          // ✅ Full content (strip HTML)
           let contentText = item.content || item.contentSnippet || "";
-
-          // Strip HTML tags
           contentText = contentText.replace(/<[^>]+>/g, "");
-
-          // Truncate to ~350 chars (~4–5 lines)
-          if (contentText.length > 350) {
-            contentText = contentText.slice(0, 350) + "...";
-          }
 
           return {
             title: item.title,
             link: item.link,
             date: item.pubDate || item.isoDate || "",
-            description: contentText, // ✅ longer preview
+            description: contentText, // full content, no truncation
             source: feed.title,
             image: image || DEFAULT_IMAGE,
           };
@@ -59,7 +52,6 @@ export default async function handler(req, res) {
       }
     }
 
-    // Sort newest first
     allItems.sort(
       (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
     );

@@ -27,13 +27,11 @@ export default function WriteUps({ theme = "light" }) {
     }
   }
 
-  // initial load
   useEffect(() => {
     setLoading(true);
     loadFeed().finally(() => setLoading(false));
   }, []);
 
-  // paginate locally
   useEffect(() => {
     const start = (currentPage - 1) * limit;
     const end = start + limit;
@@ -43,20 +41,23 @@ export default function WriteUps({ theme = "light" }) {
   const totalPages = Math.ceil(allPosts.length / limit);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 12 },
     visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -15 },
+    exit: { opacity: 0, y: -12 },
   };
 
   return (
     <PageWrapper>
       <section className="pt-28 pb-16 space-y-12 relative z-10">
-
         {/* Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
           <img src={clubPic2} className="w-16 h-16" />
           <div>
-            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
+            <h1
+              className={`${
+                theme === "dark" ? "text-white" : "text-black"
+              } text-3xl font-bold`}
+            >
               eCyberSec Club — ENIAD
             </h1>
             <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
@@ -71,14 +72,18 @@ export default function WriteUps({ theme = "light" }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.45, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
             className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {posts.map((p, index) => {
               const imageSrc = p.image && p.image.trim() !== "" ? p.image : FALLBACK_IMAGE;
+              const previewText =
+                p.description.length > 350
+                  ? p.description.slice(0, 350) + "..."
+                  : p.description;
 
               return (
                 <motion.div
@@ -87,26 +92,29 @@ export default function WriteUps({ theme = "light" }) {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className={`rounded-lg shadow-lg overflow-hidden border
-                    ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
-                  `}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className={`rounded-lg shadow-lg overflow-hidden border ${
+                    theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"
+                  }`}
                 >
-                  <div className={`px-4 py-2 flex justify-between ${
-                    theme === "dark"
-                      ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
-                      : "bg-cyan-700 text-white"
-                  }`}>
+                  <div
+                    className={`px-4 py-2 flex justify-between ${
+                      theme === "dark"
+                        ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
+                        : "bg-cyan-700 text-white"
+                    }`}
+                  >
                     <span>{`0${index + 1}`}</span>
                     <span className="italic text-sm">{p.date}</span>
                   </div>
 
-                  {/* Image with guaranteed fallback */}
                   <img
                     src={imageSrc}
                     alt={p.title}
                     className="w-full h-48 object-cover"
-                    onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_IMAGE;
+                    }}
                   />
 
                   <div className="p-6">
@@ -115,19 +123,18 @@ export default function WriteUps({ theme = "light" }) {
                     </h3>
 
                     <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mb-4`}>
-                      {p.description}
+                      {previewText}
                     </p>
 
-                    {/* Read More button only */}
                     <Link
                       to={`/writeup/${p.id}`}
                       state={{ post: p }}
                       className={`inline-block px-4 py-2 text-sm rounded border transition
-                        ${theme === "dark"
-                          ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
-                          : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
-                        }
-                      `}
+                        ${
+                          theme === "dark"
+                            ? "border-[#00ff00] text-[#00ff00] hover:bg-[#00ff00] hover:text-white"
+                            : "border-green-600 text-green-700 hover:bg-green-600 hover:text-white"
+                        }`}
                     >
                       Read More
                     </Link>
@@ -142,8 +149,8 @@ export default function WriteUps({ theme = "light" }) {
         <div className="flex justify-center items-center gap-4 mt-12">
           <button
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage(p => p - 1)}
-            className="px-5 py-2 rounded-full border transition hover:bg-gray-200 disabled:opacity-50"
+            onClick={() => setCurrentPage((p) => p - 1)}
+            className="px-5 py-2 rounded-full border hover:bg-cyan-600 hover:text-white transition"
           >
             Prev
           </button>
@@ -153,8 +160,8 @@ export default function WriteUps({ theme = "light" }) {
               <button
                 key={i}
                 onClick={() => setCurrentPage(i + 1)}
-                className={`w-10 h-10 rounded-full border transition ${
-                  currentPage === i + 1 ? "bg-cyan-600 text-white" : "hover:bg-gray-100"
+                className={`w-10 h-10 rounded-full border ${
+                  currentPage === i + 1 ? "bg-cyan-600 text-white" : ""
                 }`}
               >
                 {i + 1}
@@ -164,13 +171,12 @@ export default function WriteUps({ theme = "light" }) {
 
           <button
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(p => p + 1)}
-            className="px-5 py-2 rounded-full border transition hover:bg-gray-200 disabled:opacity-50"
+            onClick={() => setCurrentPage((p) => p + 1)}
+            className="px-5 py-2 rounded-full border hover:bg-cyan-600 hover:text-white transition"
           >
             Next
           </button>
         </div>
-
       </section>
     </PageWrapper>
   );

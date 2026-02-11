@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="relative container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Left: copyright */}
         <div className="text-sm text-white/80 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
-          &copy; {currentYear} eCyberSec Club — ENIAD. All rights reserved.
+          &copy; {currentYear} SECORA Club — ENIAD. All rights reserved.
         </div>
 
         {/* Right: navigation links */}

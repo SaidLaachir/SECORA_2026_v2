@@ -8,26 +8,40 @@ import PageWrapper from "../components/PageWrapper";
 export default function Home({ theme }) {
   const [hoverClub, setHoverClub] = useState(false);
   const [hoverSchool, setHoverSchool] = useState(false);
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
+  // Show popup only once per session
   useEffect(() => {
-    const timer = setTimeout(() => setShowPopup(false), 5000);
-    return () => clearTimeout(timer);
+    const hasSeenPopup = sessionStorage.getItem("homePopupShown");
+    if (!hasSeenPopup) {
+      setShowPopup(true);
+      sessionStorage.setItem("homePopupShown", "true");
+      const timer = setTimeout(() => setShowPopup(false), 5000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
     <PageWrapper>
+      {/* POPUP */}
       <div
         className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500
           ${showPopup ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
       >
-        <div className="bg-cyan-600 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-4 min-w-[280px]">
-          <span className="flex-1 font-semibold">
+        <div
+          className={`px-6 py-4 rounded-xl flex items-center gap-4 min-w-[300px] font-mono shadow-lg
+            ${theme === "dark"
+              ? "bg-[#0f001a] text-[#00ffea] border border-[#00ffea]/50 shadow-[0_0_15px_#00ffea]"
+              : "bg-white text-[#0f0f0f] border border-[#00c2ff]/50 shadow-[0_0_15px_#00c2ff]"
+            }`}
+        >
+          <span className="flex-1 font-semibold text-lg">
             Welcome to SECORA Club — ENIAD!
           </span>
           <button
             onClick={() => setShowPopup(false)}
-            className="text-white font-bold text-lg hover:text-gray-200"
+            className={`font-bold text-xl transition
+              ${theme === "dark" ? "text-[#00ffea] hover:text-white" : "text-[#00c2ff] hover:text-white"}`}
           >
             ×
           </button>

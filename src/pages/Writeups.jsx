@@ -51,20 +51,20 @@ export default function WriteUps({ theme = "light" }) {
 
   return (
     <PageWrapper>
-      <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 space-y-10 sm:space-y-12 relative z-10 px-3 sm:px-6">
+      <section className="pt-28 pb-16 space-y-12 relative z-10">
 
         {/* Header */}
-        <header className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-center sm:text-left">
+        <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
           <img
             src={theme === "dark" ? clubPicDark : clubPicLight}
-            className="w-14 h-14 sm:w-16 sm:h-16"
+            className="w-16 h-16"
             alt="Club Logo"
           />
           <div>
-            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-2xl sm:text-3xl font-bold`}>
+            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
               SECORA Club — ENIAD
             </h1>
-            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} text-sm sm:text-base`}>
+            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function WriteUps({ theme = "light" }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {posts.map((p, index) => {
               const imageSrc = p.image && p.image.trim() !== "" ? p.image : FALLBACK_IMAGE;
@@ -97,31 +97,32 @@ export default function WriteUps({ theme = "light" }) {
                     ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
                   `}
                 >
-                  <div className={`px-4 py-2 flex justify-between text-sm sm:text-base ${
+                  <div className={`px-4 py-2 flex justify-between ${
                     theme === "dark"
                       ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6] text-white"
                       : "bg-cyan-700 text-white"
                   }`}>
                     <span>{`0${index + 1}`}</span>
-                    <span className="italic text-xs sm:text-sm">{p.date}</span>
+                    <span className="italic text-sm">{p.date}</span>
                   </div>
 
                   {/* Image with guaranteed fallback */}
                   <img
                     src={imageSrc}
                     alt={p.title}
-                    className="w-full h-44 sm:h-48 object-cover"
+                    className="w-full h-48 object-cover"
                     onError={(e) => {
                       e.currentTarget.src = FALLBACK_IMAGE;
                     }}
                   />
 
-                  <div className="p-4 sm:p-6">
-                    <h3 className={`${theme === "dark" ? "text-white font-bold" : "text-black font-bold"} text-lg sm:text-xl mb-2`}>
+                  <div className="p-6">
+                    {/* Title now bold */}
+                    <h3 className={`${theme === "dark" ? "text-white font-bold" : "text-black font-bold"} text-xl mb-2`}>
                       {p.title}
                     </h3>
 
-                    <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} text-sm sm:text-base mb-4`}>
+                    <p className={`${theme === "dark" ? "text-gray-300" : "text-black"} mb-4`}>
                       {p.description}
                     </p>
 
@@ -162,7 +163,7 @@ export default function WriteUps({ theme = "light" }) {
           </motion.button>
 
           {/* Page Numbers */}
-          <div className="flex gap-2 overflow-x-auto max-w-full px-1 pt-2">
+          <div className="flex gap-2 overflow-x-auto max-w-full px-1 pt-1 pb-4">
             {[...Array(totalPages)].map((_, i) => (
               <motion.button
                 key={i}

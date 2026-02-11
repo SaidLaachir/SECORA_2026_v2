@@ -112,7 +112,8 @@ export default function WriteUps({ theme = "light" }) {
                   />
 
                   <div className="p-6">
-                    <h3 className={`${theme === "dark" ? "text-white" : "text-black"} text-xl mb-2`}>
+                    {/* Title now bold and prominent */}
+                    <h3 className={`${theme === "dark" ? "text-white font-bold" : "text-black font-bold"} text-xl mb-2`}>
                       {p.title}
                     </h3>
 

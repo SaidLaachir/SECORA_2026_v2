@@ -7,18 +7,13 @@ import OpeningPlanPDF from "../assets/documents/Opening Plan.pdf";
 import ClubConstPDF from "../assets/documents/Club Constitution.pdf";
 import ENIAD_ConstitutionPDF from "../assets/documents/Reglement Interieur ENIAD.pdf"; 
 
-
-
-
 import docImage from "/public/docimage.jpg";
 import webImage from "/public/webimage.jpg";
-import clubPic2 from "/public/clubicon.png";
+import clubPicLight from "/public/clubicon.png";          // light mode logo
+import clubPicDark from "/public/iconlogoheaderdark.png"; // dark mode logo
 import scholarityImage from "/public/scholarityPortal.png";
 import eniadlogoImage from "/public/eniadlogoImage.png";
 import umpLogoImage from "/public/umpLogoImage.png";
-
-
-
 
 const docs = [
   { id: 1, name: "2025 Annual Plan", href: AnnualPlanPDF, date: "Jan 1, 2025", img: docImage },
@@ -54,12 +49,16 @@ export default function AnnualPlan({ theme }) {
 
         {/* Club Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-          <img src={clubPic2} className="w-16 h-16" />
+          <img
+            src={isDark ? clubPicDark : clubPicLight}
+            className="w-16 h-16"
+            alt="Club Logo"
+          />
           <div>
-            <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
+            <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
             </h1>
-            <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
+            <p className={`${isDark ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills
             </p>
           </div>
@@ -79,12 +78,10 @@ export default function AnnualPlan({ theme }) {
               transition={{ delay: i * 0.1 }}
               className={`${cardBase} ${cardTheme}`}
             >
-              {/* IMAGE FRAME */}
               <div className="h-48 overflow-hidden">
                 <img src={d.img} className="w-full h-full object-cover" />
               </div>
 
-              {/* BODY */}
               <div className="p-5 space-y-4">
                 <h3 className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
                   {d.name}
@@ -125,12 +122,10 @@ export default function AnnualPlan({ theme }) {
               transition={{ delay: i * 0.1 }}
               className={`${cardBase} ${cardTheme}`}
             >
-              {/* IMAGE */}
               <div className="h-44 overflow-hidden">
                 <img src={r.img} className="w-full h-full object-cover" />
               </div>
 
-              {/* BODY */}
               <div className="p-5 space-y-4">
                 <h3 className={`${isDark ? "text-white" : "text-black"} font-semibold`}>
                   {r.name}
@@ -170,7 +165,7 @@ export default function AnnualPlan({ theme }) {
         </div>
       </section>
 
-          {/* MODAL */}
+      {/* MODAL */}
       <AnimatePresence>
         {previewFile && (
           <motion.div
@@ -186,7 +181,6 @@ export default function AnnualPlan({ theme }) {
               className={`w-full max-w-4xl h-[80vh] rounded-xl overflow-hidden flex flex-col
               ${isDark ? "bg-[#12001f]" : "bg-white"}`}
             >
-              {/* Header */}
               <div
                 className={`flex justify-between items-center px-4 py-2 border-b
                 ${isDark ? "border-[#5e17eb]/40 text-white" : "border-gray-200 text-black"}`}
@@ -202,7 +196,6 @@ export default function AnnualPlan({ theme }) {
                 </button>
               </div>
 
-              {/* PDF */}
               <iframe
                 src={previewFile}
                 className="flex-1 w-full bg-white"

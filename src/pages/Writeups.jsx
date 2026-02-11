@@ -162,7 +162,7 @@ export default function WriteUps({ theme = "light" }) {
           </motion.button>
 
           {/* Page Numbers */}
-          <div className="flex gap-2 overflow-x-auto max-w-full px-1">
+          <div className="flex gap-2 overflow-x-auto max-w-full px-1 pt-2">
             {[...Array(totalPages)].map((_, i) => (
               <motion.button
                 key={i}

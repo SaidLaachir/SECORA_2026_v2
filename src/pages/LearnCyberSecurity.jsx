@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PageWrapper from "../components/PageWrapper";
 import { motion } from "framer-motion";
-import clubPicLight from "/public/clubicon.png";           // light mode logo
-import clubPicDark from "/public/iconlogoheaderdark.png"; // dark mode logo
+import clubPicLight from "/public/clubicon.png";
+import clubPicDark from "/public/iconlogoheaderdark.png";
 
-// Placeholder images for branches
+// Placeholder images
 import cryptoImg from "/public/cryptoPlaceholder.jpg";
 import networkImg from "/public/networkPlaceholder.jpg";
 import securityImg from "/public/securityPlaceholder.jpg";
@@ -80,33 +80,31 @@ const testPlatforms = [
   { name: "TryHackMe", href: "https://tryhackme.com/" },
 ];
 
-export default function LeanCyberSecurity({ theme }) {
+export default function LearnCyberSecurity({ theme }) {
   const [openBranchId, setOpenBranchId] = useState(null);
   const isDark = theme === "dark";
 
-  const toggleBranch = (id) => {
-    setOpenBranchId((prev) => (prev === id ? null : id));
-  };
+  const toggleBranch = (id) => setOpenBranchId((prev) => (prev === id ? null : id));
 
   return (
     <PageWrapper>
-      <section className="pt-28 space-y-12">
+      <section className="pt-28 px-4 sm:px-6 lg:px-8 space-y-12 max-w-7xl mx-auto">
 
         {/* Club Header */}
-        <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
+        <header className="flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
           <img src={isDark ? clubPicDark : clubPicLight} className="w-16 h-16" alt="Club Logo" />
           <div>
-            <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl font-bold`}>
+            <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl sm:text-4xl font-bold`}>
               Learn CyberSecurity
             </h1>
-            <p className={`${isDark ? "text-gray-300" : "text-black"}`}>
+            <p className={`${isDark ? "text-gray-300" : "text-black"} mt-1`}>
               Explore the major branches of cybersecurity.
             </p>
           </div>
         </header>
 
         {/* Branches */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {branches.map((branch) => (
             <motion.div
               key={branch.id}
@@ -117,38 +115,40 @@ export default function LeanCyberSecurity({ theme }) {
                 ${isDark ? "bg-[#12001f] border-[#5e17eb]/40" : "bg-white border-gray-200"}`}
             >
               {/* Image */}
-              <div className="h-48 overflow-hidden">
+              <div className="h-48 w-full overflow-hidden">
                 <img src={branch.img} className="w-full h-full object-cover" />
               </div>
 
               {/* Body */}
-              <div className="p-5 space-y-3">
-                <h3 className={`${isDark ? "text-white" : "text-black"} text-xl font-semibold`}>
+              <div className="p-4 sm:p-5 space-y-3">
+                <h3 className={`${isDark ? "text-white" : "text-black"} text-lg sm:text-xl font-semibold`}>
                   {branch.title}
                 </h3>
-                <p className={`${isDark ? "text-gray-300" : "text-black"}`}>
+                <p className={`${isDark ? "text-gray-300" : "text-black"} text-sm sm:text-base`}>
                   {branch.description}
                 </p>
 
                 <button
                   onClick={() => toggleBranch(branch.id)}
-                  className={`px-4 py-2 rounded border text-sm font-semibold transition
-                    ${isDark ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
-                    : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"}`}
+                  className={`w-full px-4 py-2 rounded border text-sm font-semibold transition
+                    ${isDark
+                      ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
+                      : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
+                    }`}
                 >
                   {openBranchId === branch.id ? "Hide Resources" : "Show Resources"}
                 </button>
 
                 {/* Resources */}
                 {openBranchId === branch.id && (
-                  <div className="mt-4 space-y-2">
+                  <div className="mt-3 space-y-2">
                     {branch.resources.map((res, idx) => (
                       <a
                         key={idx}
                         href={res.href}
                         target="_blank"
                         rel="noreferrer"
-                        className={`block px-3 py-2 rounded text-sm transition-all duration-300
+                        className={`block w-full px-3 py-2 rounded text-sm transition-all duration-300
                           ${isDark
                             ? "bg-[#1a0033] border border-[#5e17eb]/50 text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
                             : "bg-gray-50 border border-gray-300 text-black hover:bg-cyan-600 hover:text-white"
@@ -165,11 +165,11 @@ export default function LeanCyberSecurity({ theme }) {
         </div>
 
         {/* Test Yourself Section */}
-        <div className="mt-12 text-center">
-          <h3 className={`${isDark ? "text-white" : "text-black"} font-bold text-2xl md:text-3xl mb-4`}>
+        <div className="mt-12 text-center space-y-4">
+          <h3 className={`${isDark ? "text-white" : "text-black"} font-bold text-2xl sm:text-3xl`}>
             Test Yourself
           </h3>
-          <p className={`${isDark ? "text-gray-300" : "text-black"} mb-4`}>
+          <p className={`${isDark ? "text-gray-300" : "text-black"} text-sm sm:text-base`}>
             Practice your skills on the most popular cybersecurity platforms.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
@@ -179,7 +179,7 @@ export default function LeanCyberSecurity({ theme }) {
                 href={plat.href}
                 target="_blank"
                 rel="noreferrer"
-                className={`px-4 py-2 rounded border text-sm font-semibold transition-all duration-300 hover:scale-105
+                className={`px-4 py-2 rounded border text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105
                   ${isDark
                     ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
                     : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"

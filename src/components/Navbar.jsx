@@ -40,17 +40,24 @@ export default function Navbar({ theme, toggleTheme }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.4)_1px,transparent_1px)] bg-[length:3px_3px] opacity-70 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
-        {/* Logo + Links container */}
-        <div className="flex items-center gap-6 flex-1 overflow-x-auto scrollbar-none">
-          {/* Club logo */}
-          <div className="flex-shrink-0">
-            <div className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
+        {/* Left side container */}
+        <div className="flex items-center flex-1">
+          {/* Desktop logo (left) */}
+          <div className="hidden md:flex items-center">
+            <Link to="/" className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
               <img src={clubIcon} className="w-16 h-16 object-cover" />
-            </div>
+            </Link>
           </div>
 
-          {/* Links */}
-          <div className="flex gap-6 text-lg font-semibold whitespace-nowrap">
+          {/* Mobile logo (centered) */}
+          <div className="flex md:hidden absolute left-1/2 -translate-x-1/2">
+            <Link to="/" className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
+              <img src={clubIcon} className="w-16 h-16 object-cover" />
+            </Link>
+          </div>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex gap-6 text-lg font-semibold whitespace-nowrap ml-6">
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -78,6 +85,7 @@ export default function Navbar({ theme, toggleTheme }) {
             {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
           </button>
 
+          {/* Mobile menu icon only */}
           <div className="md:hidden">
             <MobileMenu
               links={links}

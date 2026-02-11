@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageWrapper from "../components/PageWrapper";
 import clubPicLight from "/public/clubicon.png";       // logo for light mode
-import clubPicDark from "/public/clubicondark.png";  // logo for dark mode
+import clubPicDark from "/public/clubiconheaderdark.png";  // logo for dark mode
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 

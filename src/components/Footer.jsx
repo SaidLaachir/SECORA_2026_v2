@@ -42,7 +42,7 @@ export default function Footer() {
             to="/annual-plan"
             className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
           >
-            Annual Plan
+            Documents
           </Link>
 
           <Link

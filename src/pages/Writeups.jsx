@@ -118,34 +118,19 @@ export default function WriteUps({ theme = "light" }) {
                       {p.description}
                     </p>
 
-                    <div className="flex flex-col gap-2">
-                      {/* Read More */}
-                      <Link
-                        to={`/writeup/${p.id}`}
-                        state={{ post: p }}
-                        className={`inline-block px-4 py-2 text-sm rounded border transition
-                          ${theme === "dark"
-                            ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
-                            : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
-                          }
-                        `}
-                      >
-                        Read More
-                      </Link>
-
-                      {/* Back to Write-ups (distinct color/effect) */}
-                      <Link
-                        to="/writeups"
-                        className={`inline-block px-4 py-2 text-sm rounded border transition
-                          ${theme === "dark"
-                            ? "border-[#ff8c42] text-[#ffb86c] hover:bg-[#ff8c42] hover:text-white"
-                            : "border-orange-500 text-orange-600 hover:bg-orange-500 hover:text-white"
-                          }
-                        `}
-                      >
-                        Back to Write-ups
-                      </Link>
-                    </div>
+                    {/* Read More button only */}
+                    <Link
+                      to={`/writeup/${p.id}`}
+                      state={{ post: p }}
+                      className={`inline-block px-4 py-2 text-sm rounded border transition
+                        ${theme === "dark"
+                          ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
+                          : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
+                        }
+                      `}
+                    >
+                      Read More
+                    </Link>
                   </div>
                 </motion.div>
               );

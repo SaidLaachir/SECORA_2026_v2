@@ -12,6 +12,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import BackgroundLogo from "./components/BackgroundLogo";
 import Preloader from "./components/Preloader";
 import LearnCyberSecurity from "./pages/LearnCyberSecurity";
+import BranchWindow from "./pages/BranchWindow";
+
 
 
 export default function App() {

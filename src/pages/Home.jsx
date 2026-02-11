@@ -23,7 +23,7 @@ export default function Home({ theme }) {
       >
         <div className="bg-cyan-600 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-4 min-w-[280px]">
           <span className="flex-1 font-semibold">
-            Welcome to eCyberSec Club — ENIAD!
+            Welcome to SECORA Club — ENIAD!
           </span>
           <button
             onClick={() => setShowPopup(false)}
@@ -45,7 +45,7 @@ export default function Home({ theme }) {
           />
           <div>
             <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
-              eCyberSec Club — ENIAD
+              SECORA Club — ENIAD
             </h1>
             <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills
@@ -67,7 +67,7 @@ export default function Home({ theme }) {
             </h2>
 
             <p className={`${theme==="dark"?"text-gray-300":"text-black"} mt-3`}>
-              eCyberSec Club is a student-led organization focused on hands-on cybersecurity training.
+              SECORA Club is a student-led organization focused on hands-on cybersecurity training.
             </p>
 
             <ul className={`${theme==="dark"?"text-gray-300":"text-black"} list-disc pl-5 mt-4`}>

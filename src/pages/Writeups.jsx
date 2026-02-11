@@ -62,7 +62,7 @@ export default function WriteUps({ theme = "light" }) {
           />
           <div>
             <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
-              eCyberSec Club — ENIAD
+              SECORA Club — ENIAD
             </h1>
             <p className={`${theme === "dark" ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills

@@ -56,7 +56,7 @@ export default function AnnualPlan({ theme }) {
           />
           <div>
             <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl font-bold`}>
-              eCyberSec Club — ENIAD
+              SECORA Club — ENIAD
             </h1>
             <p className={`${isDark ? "text-gray-300" : "text-black"}`}>
               Building practical cybersecurity skills

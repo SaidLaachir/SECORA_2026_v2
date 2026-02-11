@@ -43,9 +43,9 @@ export default function WriteUps({ theme = "light" }) {
   const totalPages = Math.ceil(allPosts.length / limit);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 12 },
+    hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -12 },
+    exit: { opacity: 0, y: -15 },
   };
 
   return (
@@ -71,10 +71,10 @@ export default function WriteUps({ theme = "light" }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.45, ease: "easeInOut" }}
             className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {posts.map((p, index) => {
@@ -87,7 +87,7 @@ export default function WriteUps({ theme = "light" }) {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
                   className={`rounded-lg shadow-lg overflow-hidden border
                     ${theme === "dark" ? "bg-[#1a0033] border-[#5e17eb]/40" : "bg-white border-gray-200"}
                   `}
@@ -106,9 +106,7 @@ export default function WriteUps({ theme = "light" }) {
                     src={imageSrc}
                     alt={p.title}
                     className="w-full h-48 object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src = FALLBACK_IMAGE;
-                    }}
+                    onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
                   />
 
                   <div className="p-6">
@@ -120,17 +118,34 @@ export default function WriteUps({ theme = "light" }) {
                       {p.description}
                     </p>
 
-                    <Link
-                      to={`/writeup/${p.id}`}
-                      state={{ post: p }}
-                      className={`inline-block px-4 py-2 text-sm rounded border transition
-                        ${theme === "dark"
-                          ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
-                          : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"}
-                      `}
-                    >
-                      Read More
-                    </Link>
+                    <div className="flex flex-col gap-2">
+                      {/* Read More */}
+                      <Link
+                        to={`/writeup/${p.id}`}
+                        state={{ post: p }}
+                        className={`inline-block px-4 py-2 text-sm rounded border transition
+                          ${theme === "dark"
+                            ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb]"
+                            : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
+                          }
+                        `}
+                      >
+                        Read More
+                      </Link>
+
+                      {/* Back to Write-ups (distinct color/effect) */}
+                      <Link
+                        to="/writeups"
+                        className={`inline-block px-4 py-2 text-sm rounded border transition
+                          ${theme === "dark"
+                            ? "border-[#ff8c42] text-[#ffb86c] hover:bg-[#ff8c42] hover:text-white"
+                            : "border-orange-500 text-orange-600 hover:bg-orange-500 hover:text-white"
+                          }
+                        `}
+                      >
+                        Back to Write-ups
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -140,11 +155,10 @@ export default function WriteUps({ theme = "light" }) {
 
         {/* Pagination */}
         <div className="flex justify-center items-center gap-4 mt-12">
-
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(p => p - 1)}
-            className="px-5 py-2 rounded-full border"
+            className="px-5 py-2 rounded-full border transition hover:bg-gray-200 disabled:opacity-50"
           >
             Prev
           </button>
@@ -154,8 +168,8 @@ export default function WriteUps({ theme = "light" }) {
               <button
                 key={i}
                 onClick={() => setCurrentPage(i + 1)}
-                className={`w-10 h-10 rounded-full border ${
-                  currentPage === i + 1 ? "bg-cyan-600 text-white" : ""
+                className={`w-10 h-10 rounded-full border transition ${
+                  currentPage === i + 1 ? "bg-cyan-600 text-white" : "hover:bg-gray-100"
                 }`}
               >
                 {i + 1}
@@ -166,11 +180,10 @@ export default function WriteUps({ theme = "light" }) {
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(p => p + 1)}
-            className="px-5 py-2 rounded-full border"
+            className="px-5 py-2 rounded-full border transition hover:bg-gray-200 disabled:opacity-50"
           >
             Next
           </button>
-
         </div>
 
       </section>

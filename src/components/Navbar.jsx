@@ -10,7 +10,7 @@ const links = [
   { to: "/annual-plan", label: "Documents", key: "annualPlan" },
   { to: "/activities", label: "Activities", key: "activities" },
   { to: "/writeups", label: "Write-ups", key: "writeups" },
-  { to: "/lean-cybersecurity", label: "Lean CyberSecurity", key: "leanCyber" },
+  { to: "/learn-cybersecurity", label: "Learn Cybersecurity", key: "learnCyber" },
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
@@ -53,19 +53,19 @@ export default function Navbar({ theme, toggleTheme }) {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10 text-lg font-semibold">
+        <div className="hidden md:flex gap-8 text-lg font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => handleClick(l.key)}
-              className={`relative transition hover:scale-110 ${
+              className={`relative transition hover:scale-110 px-2 ${
                 loc.pathname === l.to ? "font-extrabold scale-110" : "text-white/90"
               }`}
             >
               {l.label}
               {hasNotification(l.key) && (
-                <span className="absolute -top-1 -right-3 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
               )}
             </Link>
           ))}
@@ -100,12 +100,8 @@ function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
 
-  // Auto close on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [loc.pathname]);
+  useEffect(() => setOpen(false), [loc.pathname]);
 
-  // Scroll lock
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
@@ -146,7 +142,9 @@ function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
               key={l.to}
               to={l.to}
               onClick={() => handleClick(l.key)}
-              className={`flex justify-between ${loc.pathname === l.to ? "font-extrabold" : ""}`}
+              className={`flex justify-between ${
+                loc.pathname === l.to ? "font-extrabold" : ""
+              }`}
             >
               {l.label}
               {hasNotification(l.key) && (

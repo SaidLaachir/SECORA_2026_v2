@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PageWrapper from "../components/PageWrapper";
 import { motion, AnimatePresence } from "framer-motion";
@@ -180,16 +180,22 @@ export default function Activities({ theme }) {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-2 rounded border transition-all duration-300 transform hover:scale-105"
+                className="px-4 py-2 rounded border transition-all duration-300 transform hover:scale-105 font-semibold"
                 style={{
                   borderColor: theme === "dark" ? "#8b5cf6" : "#ccc",
                   backgroundColor: theme === "dark" ? "#1a0033" : "transparent",
                   color: theme === "dark" ? "#c7b8ff" : "black",
                 }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = social.color}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = theme === "dark" ? "#1a0033" : "transparent"}
+                onMouseEnter={e => {
+                  e.currentTarget.style.backgroundColor = social.color;
+                  e.currentTarget.style.color = "white";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.backgroundColor = theme === "dark" ? "#1a0033" : "transparent";
+                  e.currentTarget.style.color = theme === "dark" ? "#c7b8ff" : "black";
+                }}
               >
-                <span className="text-white font-semibold">{social.name}</span>
+                {social.name}
               </a>
             ))}
           </div>

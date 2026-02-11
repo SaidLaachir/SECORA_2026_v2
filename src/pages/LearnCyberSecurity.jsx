@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PageWrapper from "../components/PageWrapper";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import clubPicLight from "/public/clubicon.png";
 import clubPicDark from "/public/iconlogoheaderdark.png";
 
@@ -81,10 +82,8 @@ const testPlatforms = [
 ];
 
 export default function LearnCyberSecurity({ theme }) {
-  const [openBranchId, setOpenBranchId] = useState(null);
   const isDark = theme === "dark";
-
-  const toggleBranch = (id) => setOpenBranchId((prev) => (prev === id ? null : id));
+  const navigate = useNavigate();
 
   return (
     <PageWrapper>
@@ -128,37 +127,17 @@ export default function LearnCyberSecurity({ theme }) {
                   {branch.description}
                 </p>
 
+                {/* Navigate to BranchWindow */}
                 <button
-                  onClick={() => toggleBranch(branch.id)}
+                  onClick={() => navigate("/branch", { state: { branch } })}
                   className={`w-full px-4 py-2 rounded border text-sm font-semibold transition
                     ${isDark
                       ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
                       : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
                     }`}
                 >
-                  {openBranchId === branch.id ? "Hide Resources" : "Show Resources"}
+                  Explore
                 </button>
-
-                {/* Resources */}
-                {openBranchId === branch.id && (
-                  <div className="mt-3 space-y-2">
-                    {branch.resources.map((res, idx) => (
-                      <a
-                        key={idx}
-                        href={res.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className={`block w-full px-3 py-2 rounded text-sm transition-all duration-300
-                          ${isDark
-                            ? "bg-[#1a0033] border border-[#5e17eb]/50 text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
-                            : "bg-gray-50 border border-gray-300 text-black hover:bg-cyan-600 hover:text-white"
-                          }`}
-                      >
-                        {res.name} [{res.type.toUpperCase()}]
-                      </a>
-                    ))}
-                  </div>
-                )}
               </div>
             </motion.div>
           ))}

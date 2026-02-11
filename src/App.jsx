@@ -71,6 +71,7 @@ export default function App() {
                 <Route path="/writeups" element={<Writeups theme={theme} />} />
                 <Route path="/writeup/:id" element={<WriteUpDetail theme={theme} />} />
                 <Route path="/learn-cybersecurity" element={<LearnCyberSecurity theme={theme} />} />
+                <Route path="/branch" element={<BranchWindow theme={theme} />} />
               </Routes>
             </main>
 

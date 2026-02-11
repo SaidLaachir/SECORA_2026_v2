@@ -10,6 +10,7 @@ const links = [
   { to: "/annual-plan", label: "Documents", key: "annualPlan" },
   { to: "/activities", label: "Activities", key: "activities" },
   { to: "/writeups", label: "Write-ups", key: "writeups" },
+  { to: "/lean-cybersecurity", label: "Lean CyberSecurity", key: "leanCyber" },
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
@@ -95,7 +96,6 @@ export default function Navbar({ theme, toggleTheme }) {
 }
 
 /* ================= MOBILE MENU ================= */
-
 function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
@@ -146,9 +146,7 @@ function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
               key={l.to}
               to={l.to}
               onClick={() => handleClick(l.key)}
-              className={`flex justify-between ${
-                loc.pathname === l.to ? "font-extrabold" : ""
-              }`}
+              className={`flex justify-between ${loc.pathname === l.to ? "font-extrabold" : ""}`}
             >
               {l.label}
               {hasNotification(l.key) && (

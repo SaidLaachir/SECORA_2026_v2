@@ -11,6 +11,8 @@ import WriteUpDetail from "./pages/WriteupDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import BackgroundLogo from "./components/BackgroundLogo";
 import Preloader from "./components/Preloader";
+import LearnCyberSecurity from "./pages/LearnCyberSecurity";
+
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -68,6 +70,7 @@ export default function App() {
                 <Route path="/activities" element={<Activities theme={theme} />} />
                 <Route path="/writeups" element={<Writeups theme={theme} />} />
                 <Route path="/writeup/:id" element={<WriteUpDetail theme={theme} />} />
+                <Route path="/learn-cybersecurity" element={<LearnCyberSecurity theme={theme} />} />
               </Routes>
             </main>
 

@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
 
         {/* Right: navigation links */}
-        <div className="flex gap-4 text-sm font-semibold">
+        <div className="flex gap-4 text-sm font-semibold flex-wrap justify-center md:justify-end">
           <Link
             to="/"
             className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
@@ -50,6 +50,13 @@ export default function Footer() {
             className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
           >
             Write-ups
+          </Link>
+
+          <Link
+            to="/lean-cybersecurity"
+            className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
+          >
+            Lean CyberSecurity
           </Link>
         </div>
       </div>

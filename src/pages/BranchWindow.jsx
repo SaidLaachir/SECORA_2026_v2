@@ -9,7 +9,7 @@ import clubPicDark from "/public/iconlogoheaderdark.png";
 const branchData = {
   Cryptography: {
     description:
-      "Cryptography is the practice of securing communication and data through encoding and encryption techniques.",
+      "Cryptography is the science of protecting information using mathematical techniques to ensure confidentiality, integrity, and authentication. It transforms readable data into unreadable form, preventing unauthorized access and tampering. Converts plaintext into ciphertext using algorithms and keys. Ensures confidentiality, integrity, authentication, and non-repudiation. Used in secure communication, digital signatures, passwords, and online transactions",
     roles: [
       { title: "Cryptographer", salary: "$80k - $150k" },
       { title: "Security Engineer", salary: "$70k - $140k" },

@@ -56,7 +56,7 @@ export default function Footer() {
             to="/lean-cybersecurity"
             className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
           >
-            Lean CyberSecurity
+            Learn CyberSecurity
           </Link>
         </div>
       </div>

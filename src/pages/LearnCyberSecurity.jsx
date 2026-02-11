@@ -97,7 +97,7 @@ export default function LeanCyberSecurity({ theme }) {
           <img src={isDark ? clubPicDark : clubPicLight} className="w-16 h-16" alt="Club Logo" />
           <div>
             <h1 className={`${isDark ? "text-white" : "text-black"} text-3xl font-bold`}>
-              Lean CyberSecurity
+              Learn CyberSecurity
             </h1>
             <p className={`${isDark ? "text-gray-300" : "text-black"}`}>
               Explore the major branches of cybersecurity.

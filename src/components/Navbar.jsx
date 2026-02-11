@@ -53,7 +53,7 @@ export default function Navbar({ theme, toggleTheme }) {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 text-lg font-semibold overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <div className="hidden md:flex gap-8 text-lg font-semibold overflow-x-auto scrollbar-none flex-1 ml-8">
           {links.map((l) => (
             <Link
               key={l.to}

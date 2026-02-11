@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import clubIcon from "/public/clubiconwhite.png";
-import clubIconMobile from "/public/clubiconimage";
+import clubIconMobile from "/public/clubiconimage.png";
 
 const links = [
   { to: "/", label: "Home" },

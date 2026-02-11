@@ -11,7 +11,8 @@ import pic2 from "/public/pic2.jpg";
 import pic3 from "/public/pic3.jpg";
 import pic4 from "/public/pic4.jpg";
 import pic5 from "/public/pic5.jpeg";
-import clubPic2 from "/public/clubicon.png";
+import clubPicLight from "/public/clubicon.png";           // light mode logo
+import clubPicDark from "/public/iconlogoheaderdark.png"; // dark mode logo
 import pic6 from "/public/clubMembers/pic6.jpg";
 import pic7 from "/public/clubMembers/pic7.jpg";
 
@@ -47,7 +48,11 @@ export default function Activities({ theme }) {
 
         {/* Club Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-          <img src={clubPic2} className="w-16 h-16" />
+          <img
+            src={theme === "dark" ? clubPicDark : clubPicLight}
+            className="w-16 h-16"
+            alt="Club Logo"
+          />
           <div>
             <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
@@ -167,7 +172,7 @@ export default function Activities({ theme }) {
         <div className="mt-12 text-center space-y-2">
           <h3 className={`font-bold text-2xl md:text-3xl mb-3 ${theme === "dark" ? "text-white" : "text-black"}`}>Join our socials</h3>
           <div className="flex justify-center gap-4 flex-wrap">
-            {[
+            {[ 
               { href: "https://www.instagram.com/e_cybersec_club/", name: "Instagram", color: "#E4405F" },
               { href: "https://www.linkedin.com/company/akira-club/posts/?feedView=all", name: "LinkedIn", color: "#0077B5" },
               { href: "https://discord.gg/rPVBFPvq", name: "Discord", color: "#5865F2" },

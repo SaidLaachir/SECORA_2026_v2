@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import clubPic from "/public/clubpic2.jpg";
 import schoolPic from "/public/schoolpic.jpeg";
-import clubPic2 from "/public/clubicon.png";
+import clubPicLight from "/public/clubicon.png";           // light mode logo
+import clubPicDark from "/public/iconlogoheaderdark.png"; // dark mode logo
 import PageWrapper from "../components/PageWrapper";
 
 export default function Home({ theme }) {
@@ -37,7 +38,11 @@ export default function Home({ theme }) {
 
         {/* Club Header */}
         <header className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-          <img src={clubPic2} className="w-16 h-16" />
+          <img
+            src={theme === "dark" ? clubPicDark : clubPicLight}
+            className="w-16 h-16"
+            alt="Club Logo"
+          />
           <div>
             <h1 className={`${theme === "dark" ? "text-white" : "text-black"} text-3xl font-bold`}>
               eCyberSec Club — ENIAD
@@ -102,12 +107,12 @@ export default function Home({ theme }) {
               className={`inline-block mt-4 px-5 py-2 rounded-lg font-semibold transition
                 ${theme === "dark"
                   ? "bg-purple-700 text-white hover:bg-purple-600"
-                  : "bg-cyan-600 text-white hover:bg-cyan-500"}
+                  : "bg-cyan-600 text-white hover:bg-cyan-500"
+                }
               `}
             >
               Visit ENIAD School →
             </a>
-
 
             <img
               src={schoolPic}

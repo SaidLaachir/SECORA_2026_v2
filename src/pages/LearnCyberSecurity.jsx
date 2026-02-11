@@ -1,7 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import PageWrapper from "../components/PageWrapper";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import clubPicLight from "/public/clubicon.png";
 import clubPicDark from "/public/iconlogoheaderdark.png";
 
@@ -12,66 +12,37 @@ import securityImg from "/public/securityPlaceholder.jpg";
 import quantumImg from "/public/quantumPlaceholder.jpg";
 import forensicImg from "/public/forensicPlaceholder.jpg";
 
+// Centralized branch data
 const branches = [
   {
     id: 1,
     title: "Cryptography",
     description: "Learn encryption, hashing, digital signatures, and protocols.",
     img: cryptoImg,
-    resources: [
-      { type: "file", name: "Intro to Cryptography PDF", href: "#" },
-      { type: "web", name: "Crypto101 Website", href: "https://www.crypto101.com" },
-      { type: "youtube", name: "Cryptography Basics", href: "https://www.youtube.com/watch?v=ZcB32GqfH-0" },
-      { type: "lab", name: "Cryptography Lab Tool", href: "#" },
-    ],
   },
   {
     id: 2,
     title: "Network Fundamentals",
     description: "Understand networking basics: TCP/IP, routing, and protocols.",
     img: networkImg,
-    resources: [
-      { type: "file", name: "Network Basics PDF", href: "#" },
-      { type: "web", name: "Cisco Networking Academy", href: "https://www.netacad.com/" },
-      { type: "youtube", name: "Networking Fundamentals", href: "https://www.youtube.com/watch?v=qiQR5rTSshw" },
-      { type: "lab", name: "Packet Tracer Lab", href: "#" },
-    ],
   },
   {
     id: 3,
     title: "Network Security",
     description: "Firewalls, IDS/IPS, VPNs, and securing networks.",
     img: securityImg,
-    resources: [
-      { type: "file", name: "Network Security Guide", href: "#" },
-      { type: "web", name: "OWASP Security Resources", href: "https://owasp.org" },
-      { type: "youtube", name: "Network Security Tutorial", href: "https://www.youtube.com/watch?v=VmhR_eVOkXo" },
-      { type: "lab", name: "Wireshark Practice Lab", href: "#" },
-    ],
   },
   {
     id: 4,
     title: "Quantum Computing",
     description: "Basics of quantum computing and post-quantum cryptography.",
     img: quantumImg,
-    resources: [
-      { type: "file", name: "Quantum Computing PDF", href: "#" },
-      { type: "web", name: "IBM Quantum", href: "https://quantum-computing.ibm.com/" },
-      { type: "youtube", name: "Quantum Computing Explained", href: "https://www.youtube.com/watch?v=JhHMJCUmq28" },
-      { type: "lab", name: "Qiskit Lab", href: "#" },
-    ],
   },
   {
     id: 5,
     title: "Forensics",
     description: "Learn digital forensics, analysis, and recovery techniques.",
     img: forensicImg,
-    resources: [
-      { type: "file", name: "Forensics Handbook", href: "#" },
-      { type: "web", name: "SANS Forensics Resources", href: "https://www.sans.org/forensics/" },
-      { type: "youtube", name: "Digital Forensics Tutorial", href: "https://www.youtube.com/watch?v=X3Hbq2t3C-0" },
-      { type: "lab", name: "Forensic Lab Practice", href: "#" },
-    ],
   },
 ];
 
@@ -82,8 +53,12 @@ const testPlatforms = [
 ];
 
 export default function LearnCyberSecurity({ theme }) {
-  const isDark = theme === "dark";
   const navigate = useNavigate();
+  const isDark = theme === "dark";
+
+  const goToBranch = (branchTitle) => {
+    navigate("/branch", { state: { branch: branchTitle } });
+  };
 
   return (
     <PageWrapper>
@@ -102,7 +77,7 @@ export default function LearnCyberSecurity({ theme }) {
           </div>
         </header>
 
-        {/* Branches */}
+        {/* Branch Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {branches.map((branch) => (
             <motion.div
@@ -110,12 +85,13 @@ export default function LearnCyberSecurity({ theme }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className={`rounded-xl shadow-lg overflow-hidden border transition-all duration-300 hover:scale-105
+              onClick={() => goToBranch(branch.title)}
+              className={`cursor-pointer rounded-xl shadow-lg overflow-hidden border transition-all duration-300 hover:scale-105
                 ${isDark ? "bg-[#12001f] border-[#5e17eb]/40" : "bg-white border-gray-200"}`}
             >
               {/* Image */}
               <div className="h-48 w-full overflow-hidden">
-                <img src={branch.img} className="w-full h-full object-cover" />
+                <img src={branch.img} className="w-full h-full object-cover" alt={branch.title} />
               </div>
 
               {/* Body */}
@@ -127,16 +103,14 @@ export default function LearnCyberSecurity({ theme }) {
                   {branch.description}
                 </p>
 
-                {/* Navigate to BranchWindow */}
                 <button
-                  onClick={() => navigate("/branch", { state: { branch } })}
                   className={`w-full px-4 py-2 rounded border text-sm font-semibold transition
                     ${isDark
                       ? "border-[#8b5cf6] text-[#c7b8ff] hover:bg-[#5e17eb] hover:text-white"
                       : "border-cyan-600 text-cyan-700 hover:bg-cyan-600 hover:text-white"
                     }`}
                 >
-                  Explore
+                  Explore Branch
                 </button>
               </div>
             </motion.div>

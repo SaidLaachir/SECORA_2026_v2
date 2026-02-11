@@ -40,35 +40,33 @@ export default function Navbar({ theme, toggleTheme }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.4)_1px,transparent_1px)] bg-[length:3px_3px] opacity-70 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
-        {/* Logo */}
-        <div className="flex items-center gap-4 z-20">
-          <div className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
-            <img src={clubIcon} className="w-16 h-16 object-cover" />
+        {/* Logo + Links container */}
+        <div className="flex items-center gap-6 flex-1 overflow-x-auto scrollbar-none">
+          {/* Club logo */}
+          <div className="flex-shrink-0">
+            <div className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30">
+              <img src={clubIcon} className="w-16 h-16 object-cover" />
+            </div>
           </div>
 
-          <div>
-            <div className="font-extrabold text-2xl">SECORA CLUB</div>
-            <div className="text-sm text-white/80 italic">ENIAD — Cybersecurity Society</div>
+          {/* Links */}
+          <div className="flex gap-6 text-lg font-semibold whitespace-nowrap">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => handleClick(l.key)}
+                className={`relative transition hover:scale-110 px-2 ${
+                  loc.pathname === l.to ? "font-extrabold scale-110" : "text-white/90"
+                }`}
+              >
+                {l.label}
+                {hasNotification(l.key) && (
+                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                )}
+              </Link>
+            ))}
           </div>
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 text-lg font-semibold overflow-x-auto scrollbar-none flex-1 ml-8">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              onClick={() => handleClick(l.key)}
-              className={`relative transition hover:scale-110 px-2 ${
-                loc.pathname === l.to ? "font-extrabold scale-110" : "text-white/90"
-              }`}
-            >
-              {l.label}
-              {hasNotification(l.key) && (
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-              )}
-            </Link>
-          ))}
         </div>
 
         {/* Right controls */}

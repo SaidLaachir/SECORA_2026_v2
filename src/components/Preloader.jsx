@@ -35,7 +35,11 @@ export default function Preloader({ onFinish }) {
         autoPlay
         muted
         playsInline
-        className="w-full h-full object-cover"
+        className="min-w-full min-h-full object-cover"
+        style={{
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
+        }}
       />
     </div>
   );

@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Members from "./pages/Members";
 import AnnualPlan from "./pages/AnnualPlan";
 import Activities from "./pages/Activities";
+import Activity from "./pages/Activity"; // ✅ ADD THIS
 import Writeups from "./pages/Writeups";
 import WriteUpDetail from "./pages/WriteupDetail";
 import ScrollToTop from "./components/ScrollToTop";
@@ -13,23 +14,17 @@ import BackgroundLogo from "./components/BackgroundLogo";
 import Preloader from "./components/Preloader";
 import LearnCyberSecurity from "./pages/LearnCyberSecurity";
 import BranchWindow from "./pages/BranchWindow";
-
-
+import SocialOrb from "./components/SocialOrb";
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(true);
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "dark"
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
-
-  // Load saved theme
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) setTheme(storedTheme);
   }, []);
 
-  // Apply theme to document + save
   useEffect(() => {
     localStorage.setItem("theme", theme);
     if (theme === "dark") {
@@ -63,13 +58,15 @@ export default function App() {
 
             <BackgroundLogo />
 
-            {/* RESPONSIVE MAIN WRAPPER */}
-            <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+            <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full relative">
               <Routes>
                 <Route path="/" element={<Home theme={theme} />} />
                 <Route path="/members" element={<Members theme={theme} />} />
                 <Route path="/annual-plan" element={<AnnualPlan theme={theme} />} />
                 <Route path="/activities" element={<Activities theme={theme} />} />
+
+                <Route path="/activity/:id" element={<Activity theme={theme} />} />
+
                 <Route path="/writeups" element={<Writeups theme={theme} />} />
                 <Route path="/writeup/:id" element={<WriteUpDetail theme={theme} />} />
                 <Route path="/learn-cybersecurity" element={<LearnCyberSecurity theme={theme} />} />
@@ -78,6 +75,8 @@ export default function App() {
             </main>
 
             <Footer theme={theme} />
+
+            <SocialOrb theme={theme} />
           </div>
         </>
       )}

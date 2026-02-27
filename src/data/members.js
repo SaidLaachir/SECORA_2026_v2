@@ -12,6 +12,7 @@ import aymen_saleh_ayt_brahim from "/public/clubMembers/aymen saleh ayt brahim.j
 import ilhamelhajli from "/public/clubMembers/ilhamelhajli.jpeg";
 import yahyaMohib from "/public/clubMembers/yahyaMohib.jpeg";
 import chaimae from "/public/clubMembers/chaimae.jpeg";
+import mehdi from "/public/clubMembers/mehdi.jpeg";
 
 
 // sample members data -- replace pictures/links with real ones
@@ -38,15 +39,15 @@ const members = [
     role: "Sponsoring Manager",
     image: said,
     linkedin: "https://www.linkedin.com/in/said-l-649581225/",
-    bio: "He has one job, to find an investor (Someone to pay for us 😏)"
+    bio: "He has one job, to find an investor and a sponsor for our club, and to make sure that we have all the resources we need to achieve our goals and objectives."
   },
   {
     id: 4,
     name: "Mohamed Amine AIT BAOUI",
-    role: "Formation Manager",
+    role: "Training Manager",
     image: AIT_BAOUI_Mohamed_amine,
     linkedin: "https://www.linkedin.com/in/oussama-hajjoubi-089a66214/",
-    bio: "Mohamed Amine is the formation manager of our club, he is responsible for managing and coordinating all the training activities of the club and making sure that all the members are well trained and ready for all the activities and events of the club."
+    bio: "Mohamed Amine is the training manager of our club, he is responsible for managing and coordinating all the training activities of the club."
   },
   {
     id: 5,
@@ -58,11 +59,11 @@ const members = [
   },
   {
     id: 6,
-    name: "Safouane",
-    role: "Project Manager",
+    name: "Safouane  EL KHADIR",
+    role: "Project Managing Team",
     image: safouane,
     linkedin: "https://linkedin.com/in/example3",
-    bio: "We need somebody to deal with Projects palanings and roadmaps, this is Safouane "
+    bio: "Safouane is a member of the project managing team, he is responsible for helping the project manager in managing and coordinating all the projects and activities of the club."
   },
   {
     id: 7,
@@ -70,11 +71,11 @@ const members = [
     role: "Interior commuinication manager",
     image: ihsane,
     linkedin: "https://linkedin.com/in/example3",
-    bio: "Ihsane is the interior communication manager of our club, she is responsible for managing and coordinating all the communication activities between the members of the club and making sure that all the members are well informed about all the activities and events of the club."
+    bio: "Ihsane is the interior communication manager of our club, she is responsible for managing and coordinating all the communication activities between the members of the club."
   },
   {
     id: 8,
-    name: "Mouhcine",
+    name: "Mouhcine DARMOUNE",
     role: "Events Manager",
     image: mohcineDarmoune,
     linkedin: "https://linkedin.com/in/example3",
@@ -90,7 +91,7 @@ const members = [
   },
   {
     id: 10,
-    name: "Hossam",
+    name: "Hossam ELMRABTI",
     role: "Designer",
     image: Hossam,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
@@ -100,17 +101,17 @@ const members = [
     id: 11,
     name: "Mehdi",
     role: "CTF manager",
-    image: newunknown,
+    image: mehdi,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
     bio: "Mehdi is the CTF manager of our club, he is responsible for organizing and managing all the CTF events and activities of the club."
   },
   {
     id: 12,
     name: "Aymen Saleh AYT BRAHIM",
-    role: "Unkown",
+    role: "Training Team",
     image: aymen_saleh_ayt_brahim,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
-    bio: "Aymen is ....."
+    bio: "Aymen is a member of the training team of our club, he is responsible for coordinating all the training activities of the club."
   },
   {
     id: 13,
@@ -138,7 +139,7 @@ const members = [
   },
   {
     id: 16,
-    name: "Zineb",
+    name: "Zineb EL ATRAOUI",
     role: "Unkown",
     image: newunknown,
     linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",

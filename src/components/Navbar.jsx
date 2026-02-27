@@ -10,7 +10,7 @@ const links = [
   { to: "/members", label: "Members" },
   { to: "/annual-plan", label: "Documents", key: "annualPlan" },
   { to: "/activities", label: "Activities", key: "activities" },
-  { to: "/writeups", label: "Write-ups", key: "writeups" },
+  { to: "/writeups", label: "News", key: "news" },
   { to: "/learn-cybersecurity", label: "Learn Cybersecurity", key: "learnCyber" },
 ];
 
@@ -41,20 +41,15 @@ export default function Navbar({ theme, toggleTheme }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.4)_1px,transparent_1px)] bg-[length:3px_3px] opacity-70 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
-        {/* Left container */}
-        <div className="flex items-center flex-1">
-          {/* Desktop logo */}
-          <div className="hidden md:flex items-center">
-            <Link
-              to="/"
-              className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30"
-            >
-              <img src={clubIcon} className="w-16 h-16 object-cover" />
-            </Link>
-          </div>
-
-          {/* Desktop links */}
-          <div className="hidden md:flex gap-6 text-lg font-semibold whitespace-nowrap ml-6">
+        {/* Desktop logo + links */}
+        <div className="hidden md:flex items-center flex-1">
+          <Link
+            to="/"
+            className="bg-white/20 backdrop-blur-xl rounded-xl p-1 shadow-2xl border border-white/30"
+          >
+            <img src={clubIcon} className="w-16 h-16 object-cover" />
+          </Link>
+          <div className="flex gap-6 text-lg font-semibold whitespace-nowrap ml-6">
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -73,66 +68,53 @@ export default function Navbar({ theme, toggleTheme }) {
           </div>
         </div>
 
-        {/* Mobile center block */}
-        <div className="flex md:hidden absolute left-1/2 -translate-x-1/2 items-center gap-3">
-          {/* Theme toggle FIRST (left of text & logo) */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-white/20 border border-white/30"
-          >
-            {theme === "dark" ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
-          </button>
-
-          {/* Text + Logo (text on the LEFT of logo) */}
+        {/* Mobile logo + menu + theme toggle */}
+        <div className="flex md:hidden w-full justify-between items-center">
+          {/* Left side: logo + text */}
           <Link
             to="/"
-            className="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 shadow-2xl border border-white/30"
+            className="flex items-center gap-2 bg-white/20 backdrop-blur-xl rounded-xl px-3 py-1 shadow-2xl border border-white/30"
           >
+            <img src={clubIconMobile} className="w-12 h-12 object-cover" />
             <h1 className="text-white font-extrabold text-lg tracking-wide">
               SECORA CLUB
             </h1>
-            <img src={clubIconMobile} className="w-12 h-12 object-cover" />
           </Link>
-        </div>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-4 z-20">
-          {/* Desktop theme toggle */}
-          <div className="hidden md:block">
+          {/* Right side: theme toggle + hamburger */}
+          <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full bg-white/20 border border-white/30"
             >
-              {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+              {theme === "dark" ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
             </button>
+            <MobileSlideMenu links={links} notifications={notifications} handleClick={handleClick} />
           </div>
+        </div>
 
-          {/* Mobile menu icon */}
-          <div className="md:hidden">
-            <MobileMenu
-              links={links}
-              notifications={notifications}
-              handleClick={handleClick}
-              theme={theme}
-              toggleTheme={toggleTheme}
-            />
-          </div>
+        {/* Desktop theme toggle far right */}
+        <div className="hidden md:block">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-white/20 border border-white/30"
+          >
+            {theme === "dark" ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+          </button>
         </div>
       </div>
     </nav>
   );
 }
 
-/* ================= MOBILE MENU ================= */
-function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
+/* ================= MOBILE SLIDE MENU ================= */
+function MobileSlideMenu({ links, notifications, handleClick }) {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(null);
   const loc = useLocation();
 
   useEffect(() => setOpen(false), [loc.pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "auto";
-  }, [open]);
+  useEffect(() => { document.body.style.overflow = open ? "hidden" : "auto"; }, [open]);
 
   const hasNotification = (key) => {
     if (!key || !notifications[key]) return false;
@@ -141,55 +123,49 @@ function MobileMenu({ links, notifications, handleClick, theme, toggleTheme }) {
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>
+      <button onClick={() => setOpen(true)} className="transition-transform active:scale-90">
         <FaBars size={26} />
       </button>
 
-      {/* Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/60 backdrop-blur transition ${
+        className={`fixed inset-0 bg-black/60 backdrop-blur-md transition-all duration-500 ${
           open ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       />
 
-      {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-[#5e17eb] p-8 transition-transform duration-500 ${
+        className={`fixed top-0 right-0 h-full w-72 bg-[#5e17eb] p-6 shadow-2xl transition-transform duration-500 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex justify-between items-center mb-10">
+        <div className="flex justify-between items-center mb-8">
           <span className="text-xl font-bold">Menu</span>
           <FaTimes size={26} onClick={() => setOpen(false)} />
         </div>
 
-        <div className="flex flex-col gap-8 text-xl">
+        <div className="flex flex-col gap-6 text-xl">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              onClick={() => handleClick(l.key)}
-              className={`flex justify-between ${
-                loc.pathname === l.to ? "font-extrabold" : ""
+              onClick={() => {
+                setActive(l.to);
+                handleClick(l.key);
+                setTimeout(() => setOpen(false), 300);
+              }}
+              className={`transition-all duration-300 px-4 py-2 rounded-lg ${
+                active === l.to
+                  ? "bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 scale-105 shadow-lg font-bold"
+                  : "bg-white/20 backdrop-blur-md"
               }`}
             >
               {l.label}
               {hasNotification(l.key) && (
-                <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+                <span className="ml-2 inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
               )}
             </Link>
           ))}
-        </div>
-
-        {/* Mobile theme toggle */}
-        <div className="mt-12">
-          <button
-            onClick={toggleTheme}
-            className="w-full py-3 rounded-lg bg-white/20 border border-white/30"
-          >
-            {theme === "dark" ? "Light Mode" : "Dark Mode"}
-          </button>
         </div>
       </div>
     </>

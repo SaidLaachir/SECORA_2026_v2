@@ -83,11 +83,11 @@ export default function Footer() {
           
           {/* Left side */}
           <Link
-            to="/members"
+            to="/writeups"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
           >
             <Users size={22} />
-            Members
+            News
           </Link>
 
           <Link
@@ -107,15 +107,6 @@ export default function Footer() {
             Home
           </Link>
 
-          {/* Right side */}
-          <Link
-            to="/writeups"
-            className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
-          >
-            <Newspaper size={22} />
-            News
-          </Link>
-
           <Link
             to="/learn-cybersecurity"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
@@ -125,11 +116,11 @@ export default function Footer() {
           </Link>
 
           <Link
-            to="/annual-plan"
+            to="/members"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
           >
             <FileText size={22} />
-            Docs
+            Us
           </Link>
 
         </div>

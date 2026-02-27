@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Members from "./pages/Members";
 import AnnualPlan from "./pages/AnnualPlan";
 import Activities from "./pages/Activities";
-import Activity from "./pages/Activity"; // ✅ ADD THIS
+import Activity from "./pages/Activity"; // 
 import Writeups from "./pages/Writeups";
 import WriteUpDetail from "./pages/WriteupDetail";
 import ScrollToTop from "./components/ScrollToTop";

@@ -11,7 +11,7 @@ const links = [
   { to: "/annual-plan", label: "Documents", key: "annualPlan" },
   { to: "/activities", label: "Activities", key: "activities" },
   { to: "/writeups", label: "News", key: "news" },
-  { to: "/learn-cybersecurity", label: "Learn Cybersecurity", key: "learnCyber" },
+
 ];
 
 export default function Navbar({ theme, toggleTheme }) {

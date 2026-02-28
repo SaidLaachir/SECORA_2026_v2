@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   Home,
-  Newspaper,
+  Rss,
   FileText,
-  Users,
+  UsersRound,
   GraduationCap,
   CalendarDays,
 } from "lucide-react";
@@ -56,11 +56,11 @@ export default function Footer() {
               to="/writeups"
               className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
             >
-              Write-ups
+              News
             </Link>
 
             <Link
-              to="/lean-cybersecurity"
+              to="/learn-cybersecurity"
               className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
             >
               Learn CyberSecurity
@@ -81,15 +81,16 @@ export default function Footer() {
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#5e17eb]/95 backdrop-blur-xl border-t border-white/20 z-50 shadow-[0_-8px_25px_rgba(0,0,0,0.25)]">
         <div className="flex justify-around items-center py-3 text-white text-[11px] font-medium">
           
-          {/* Left side */}
+          {/* News */}
           <Link
             to="/writeups"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
           >
-            <Users size={22} />
+            <Rss size={22} />
             News
           </Link>
 
+          {/* Activities */}
           <Link
             to="/activities"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
@@ -98,7 +99,7 @@ export default function Footer() {
             Activities
           </Link>
 
-          {/* Center */}
+          {/* Home (Center) */}
           <Link
             to="/"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_14px_white]"
@@ -107,6 +108,7 @@ export default function Footer() {
             Home
           </Link>
 
+          {/* Learn */}
           <Link
             to="/learn-cybersecurity"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
@@ -115,12 +117,13 @@ export default function Footer() {
             Learn
           </Link>
 
+          {/* Members */}
           <Link
             to="/members"
             className="flex flex-col items-center gap-1 transition-all active:scale-90 active:drop-shadow-[0_0_10px_white]"
           >
-            <FileText size={22} />
-            Us
+            <UsersRound size={22} />
+            Members
           </Link>
 
         </div>

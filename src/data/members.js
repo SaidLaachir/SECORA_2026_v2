@@ -30,7 +30,7 @@ const members = [
     name: "Abdellatif TAZARNIi",
     role: "Project Manager",
     image: abdo,
-    linkedin: "https://www.linkedin.com/in/rachid-el-magroua-619189304/",
+    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
     bio: "Abedllatif is the project manager of our club, he is responsible for managing and coordinating all the projects and activities of the club."
   },
   {
@@ -46,7 +46,7 @@ const members = [
     name: "Mohamed Amine AIT BAOUI",
     role: "Training Manager",
     image: AIT_BAOUI_Mohamed_amine,
-    linkedin: "https://www.linkedin.com/in/oussama-hajjoubi-089a66214/",
+    linkedin: "https://www.linkedin.com/in/mohamed-amine-ait-baoui-bbb23a275/",
     bio: "Mohamed Amine is the training manager of our club, he is responsible for managing and coordinating all the training activities of the club."
   },
   {
@@ -59,10 +59,10 @@ const members = [
   },
   {
     id: 6,
-    name: "Safouane  EL KHADIR",
+    name: "Safouane EL KHADIR",
     role: "Project Managing Team",
     image: safouane,
-    linkedin: "https://linkedin.com/in/example3",
+    linkedin: "https://www.linkedin.com/in/el-khadir-safouane-40a997300/",
     bio: "Safouane is a member of the project managing team, he is responsible for helping the project manager in managing and coordinating all the projects and activities of the club."
   },
   {
@@ -70,7 +70,7 @@ const members = [
     name: "Ihsane FATHI",
     role: "Interior commuinication manager",
     image: ihsane,
-    linkedin: "https://linkedin.com/in/example3",
+    linkedin: "https://www.linkedin.com/in/ihsane-fathi/",
     bio: "Ihsane is the interior communication manager of our club, she is responsible for managing and coordinating all the communication activities between the members of the club."
   },
   {
@@ -86,7 +86,7 @@ const members = [
     name: "Walid ZAHRAOUI",
     role: "Vice President",
     image: newunknown,
-    linkedin: "https://linkedin.com/in/example3",
+    linkedin: "https://www.linkedin.com/in/walid-z-767922329/",
     bio: "Walid is the right hand of the president, he is here to help and support him in all his work and responsibilities."
   },
   {
@@ -94,7 +94,7 @@ const members = [
     name: "Hossam ELMRABTI",
     role: "Designer",
     image: Hossam,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
+    linkedin: "https://www.linkedin.com/in/hossam-elmrabti/,
     bio: "Hossam is the designer of our club, he is responsible for creating all the visual content and designs for the club's activities and events."
   },
   {
@@ -102,7 +102,7 @@ const members = [
     name: "Mehdi",
     role: "CTF manager",
     image: mehdi,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
+    linkedin: "https://linkedin.com/in/example2",
     bio: "Mehdi is the CTF manager of our club, he is responsible for organizing and managing all the CTF events and activities of the club."
   },
   {
@@ -110,7 +110,7 @@ const members = [
     name: "Aymen Saleh AYT BRAHIM",
     role: "Training Team",
     image: aymen_saleh_ayt_brahim,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
+    linkedin: "https://linkedin.com/in/example2",
     bio: "Aymen is a member of the training team of our club, he is responsible for coordinating all the training activities of the club."
   },
   {
@@ -118,7 +118,7 @@ const members = [
     name: "Ilham ELHAJLI",
     role: "Social Media Manager",
     image: ilhamelhajli,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
+    linkedin: "https://linkedin.com/in/example2",
     bio: "Ilham is the social media manager of our club, she is responsible for managing and updating all the social media accounts of the club and creating content for them."
   },
   {
@@ -126,7 +126,7 @@ const members = [
     name: "Yahya MOHIB",
     role: "Communication Manager",
     image: yahyaMohib,
-    linkedin: "https://www.linkedin.com/in/yahya-mohib-48070531b",
+    linkedin: "https://www.linkedin.com/in/yahya-mohib-48070531b/",
     bio: "Yahya is the communication manager of our club, he is responsible for managing and coordinating all the communication activities of the club."
   },
   {
@@ -134,16 +134,16 @@ const members = [
     name: "Chaymae BELKHIR",
     role: "Designer",
     image: chaimae,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
+    linkedin: "https://linkedin.com/in/example2",
     bio: "Designer and creative mind behind our club's visual identity."
   },
   {
     id: 16,
     name: "Zineb EL ATRAOUI",
-    role: "Unkown",
+    role: "Communication Team",
     image: newunknown,
-    linkedin: "https://www.linkedin.com/in/abdellatif-tazarni-61691a24a/",
-    bio: "Social Media Manager."
+    linkedin: "https://linkedin.com/in/example2",
+    bio: "Zineb is a member of the communication team of our club, she is responsible for helping the communication manager."
   }
 
   

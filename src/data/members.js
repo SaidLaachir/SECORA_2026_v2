@@ -94,7 +94,7 @@ const members = [
     name: "Hossam ELMRABTI",
     role: "Designer",
     image: Hossam,
-    linkedin: "https://www.linkedin.com/in/hossam-elmrabti/,
+    linkedin: "https://www.linkedin.com/in/hossam-elmrabti/",
     bio: "Hossam is the designer of our club, he is responsible for creating all the visual content and designs for the club's activities and events."
   },
   {

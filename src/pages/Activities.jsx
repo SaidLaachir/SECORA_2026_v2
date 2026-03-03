@@ -24,7 +24,7 @@ const activities = [
     animator: "Abdellatif TAZARNI",
     description:
       "Hands-on training on Active Directory pentesting and real-world attack techniques.",
-    images: ["/public/Trainings/pentestsaturday.jpg"],
+    image: "/Trainings/pentestSaturday.jpeg",
   },
 ];
 
@@ -94,6 +94,16 @@ export default function Activities({ theme }) {
                     : "bg-white border-gray-200"
                   }`}
               >
+
+                {/* IMAGE BANNER */}
+                <div className="w-full h-48 overflow-hidden">
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
                 <div className={`px-4 py-2 flex justify-between items-center
                   bg-cyan-700 text-white
                   ${theme === "dark" ? "bg-gradient-to-r from-[#5e17eb] to-[#8b5cf6]" : ""}`}>

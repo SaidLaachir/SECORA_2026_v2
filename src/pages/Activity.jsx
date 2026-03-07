@@ -32,6 +32,40 @@ The session focuses on practical attack techniques, tools, and methodologies use
     ],
     image: "/Trainings/pentestSaturday.jpeg", 
   },
+  {
+      id: 2,
+    title: "SOC Fundamentals: The Blue Team Framework",
+    date: "2026 March 07",
+    venue: "ENIAD BR5 at 1:00 PM",
+    animator: "Mohamed Amine AIT BAOUI",
+    description: `
+      We will cover a range Blue Team fundamentals:
+        * People: Mindset, mental models, career progression, burnout
+        * Process: Analysis, investigation theory, triage, and data flow
+        * Technology: Network and host monitoring, understanding protocols, spotting attacks, scripting and automation
+        * Strategic, operational, and tactical level info.
+      Sections: 
+        1. What is Cyber Security Operations Center ?
+        2. SOC Components 
+        3. SOC Overview 
+        4. Defensible Network Concepts
+        5. Events, Alerts, Anomalies, and Incidents
+        6. Incidents Managements Systems
+        7. Threat Intelligence Platforms
+        8. SIEM and Automation
+    `,
+    skills: [
+      "Network & Endpoint Telemetry Analysis",
+      "Network Protocol & Packet Analysis",
+      "SIEM, TIP, and Incident Management Tool Proficiency",
+      "Security Scripting & Automation (e.g., Python, PowerShell)",
+      "Threat Intelligence Analysis & Application",
+    ],
+    requirements: [
+      "Laptop (Windows recommended)",
+    ],
+    image: "/Trainings/socFundamentals.jpeg", 
+  }
 ];
 
 export default function Activity({ theme }) {

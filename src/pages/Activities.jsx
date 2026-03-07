@@ -26,6 +26,16 @@ const activities = [
       "Hands-on training on Active Directory pentesting and real-world attack techniques.",
     image: "/Trainings/pentestSaturday.jpeg",
   },
+  {
+    id: 2,
+    title: "SOC Fundamentals: The Blue Team Framework",
+    date: "2026 March 07",
+    venue: "ENIAD BR5 at 1:00 PM",
+    animator: "Mohamed Amine AIT BAOUI",
+    description:
+      "We will cover a range Blue Team fundamentals.",
+    image: "/Trainings/socFundamentals.jpeg",
+  }
 ];
 
 const galleryImages = [pic1, pic2, pic3, pic4, pic5, pic6, pic7];

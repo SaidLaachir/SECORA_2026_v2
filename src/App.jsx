@@ -15,6 +15,9 @@ import Preloader from "./components/Preloader";
 import LearnCyberSecurity from "./pages/LearnCyberSecurity";
 import BranchWindow from "./pages/BranchWindow";
 import SocialOrb from "./components/SocialOrb";
+import Sponsors from "./pages/Sponsors"; 
+import FundUs from "./pages/FundUs";
+import ProductPage from "./pages/ProductPage"; 
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -71,6 +74,9 @@ export default function App() {
                 <Route path="/writeup/:id" element={<WriteUpDetail theme={theme} />} />
                 <Route path="/learn-cybersecurity" element={<LearnCyberSecurity theme={theme} />} />
                 <Route path="/branch" element={<BranchWindow theme={theme} />} />
+                <Route path="/sponsors" element={<Sponsors theme={theme} />} />
+                <Route path="/fund-us" element={<FundUs theme={theme} />} />
+                <Route path="/product/:id" element={<ProductPage theme={theme} />} />
               </Routes>
             </main>
 

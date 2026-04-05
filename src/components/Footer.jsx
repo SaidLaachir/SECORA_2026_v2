@@ -65,6 +65,20 @@ export default function Footer() {
             >
               Learn CyberSecurity
             </Link>
+
+            <Link
+              to="/fund-us"
+              className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
+            >
+              Fund Us
+            </Link>
+
+            <Link
+              to="/sponsors"
+              className="hover:text-white hover:font-extrabold hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all"
+            >
+              Sponsors
+            </Link>
           </div>
         </div>
       </footer>

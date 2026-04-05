@@ -11,6 +11,8 @@ const links = [
   { to: "/annual-plan", label: "Documents", key: "annualPlan" },
   { to: "/activities", label: "Activities", key: "activities" },
   { to: "/writeups", label: "News", key: "news" },
+  { to: "/sponsors", label: "Sponsors", key: "sponsors" },
+  { to: "/fund-us", label: "Fund Us", key: "fundUs" }
 
 ];
 
